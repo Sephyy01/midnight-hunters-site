@@ -191,9 +191,11 @@ export default {
                             throw new Error('CSV vazio ou inválido')
                         }
                         
+                        console.log('🔄 Iniciando parse do CSV...')
                         this.parseCSV(csvText)
                         this.lastUpdate = new Date()
-                        console.log(`🎉 Sucesso na tentativa ${i + 1}! Dados carregados.`)
+                        this.loading = false
+                        console.log(`🎉 Sucesso na tentativa ${i + 1}! Dados carregados:`, this.data.length, 'linhas')
                         return // Sucesso!
                         
                     } catch (err) {
@@ -209,6 +211,7 @@ export default {
                 this.headers = mockData.headers
                 this.data = mockData.data
                 this.lastUpdate = new Date()
+                this.loading = false
                 this.error = 'Não foi possível carregar a planilha. Exibindo dados de exemplo. Verifique se a planilha está publicada corretamente.'
                 
             } catch (err) {
@@ -221,19 +224,27 @@ export default {
         },
 
         parseCSV(csvText) {
+            console.log('📊 parseCSV: Iniciando parse, texto tem', csvText.length, 'caracteres')
+            
             const lines = csvText.split('\n').filter(line => line.trim() !== '')
+            console.log('📊 parseCSV: Encontradas', lines.length, 'linhas')
 
             if (lines.length === 0) {
+                console.log('⚠️ parseCSV: CSV vazio')
                 this.data = []
                 this.headers = []
                 return
             }
 
             // Parse headers
+            console.log('📊 parseCSV: Processando headers da primeira linha')
             this.headers = this.parseCSVLine(lines[0])
+            console.log('📊 parseCSV: Headers encontrados:', this.headers)
 
             // Parse data rows
             this.data = []
+            console.log('📊 parseCSV: Processando', lines.length - 1, 'linhas de dados')
+            
             for (let i = 1; i < lines.length; i++) {
                 const row = this.parseCSVLine(lines[i])
                 if (row.length > 0 && row.some(cell => cell.trim() !== '')) {
@@ -244,6 +255,9 @@ export default {
                     this.data.push(row.slice(0, this.headers.length))
                 }
             }
+            
+            console.log('✅ parseCSV: Parse completo!', this.data.length, 'linhas processadas')
+            console.log('📋 parseCSV: Dados finais:', this.data)
         },
 
         parseCSVLine(line) {
