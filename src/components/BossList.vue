@@ -108,7 +108,7 @@ export default {
             error: null,
             lastUpdate: null,
             csvUrl: 'https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv',
-            spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pubhtml'
+            spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/1pQ1OoZkp8gj_nkyW0INQ4HCIw0cWQ80FOFxLhF3r55c/edit?gid=314246739#gid=314246739'
         }
     },
     mounted() {
