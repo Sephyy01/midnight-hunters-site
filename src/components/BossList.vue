@@ -107,7 +107,7 @@ export default {
             loading: false,
             error: null,
             lastUpdate: null,
-            csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv',
+            csvUrl: 'https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv',
             spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pubhtml'
         }
     },
@@ -119,43 +119,63 @@ export default {
             this.loading = true
             this.error = null
 
-            try {
-                // Adiciona timestamp para evitar cache
-                const timestamp = new Date().getTime()
-                const urlWithCache = `${this.csvUrl}&t=${timestamp}`
-                
-                console.log('Carregando dados de:', urlWithCache)
-                
-                const response = await fetch(urlWithCache, {
-                    method: 'GET',
-                    headers: {
-                        'Cache-Control': 'no-cache, no-store, must-revalidate',
-                        'Pragma': 'no-cache',
-                        'Expires': '0'
-                    }
-                })
-                
-                console.log('Response status:', response.status)
-                
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`)
-                }
+            // Lista de URLs para tentar (fallbacks)
+            const urls = [
+                `https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv`,
+                `https://api.allorigins.win/get?url=${encodeURIComponent('https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv')}`,
+                `https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv`
+            ]
 
-                const csvText = await response.text()
-                console.log('CSV carregado, primeiras 200 chars:', csvText.substring(0, 200))
-                
-                if (!csvText || csvText.trim() === '') {
-                    throw new Error('Planilha está vazia ou não foi possível carregar os dados')
+            for (let i = 0; i < urls.length; i++) {
+                try {
+                    const timestamp = new Date().getTime()
+                    const urlWithCache = `${urls[i]}&t=${timestamp}`
+                    
+                    console.log(`Tentativa ${i + 1}: Carregando dados de:`, urlWithCache)
+                    
+                    const response = await fetch(urlWithCache, {
+                        method: 'GET',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache',
+                            'Expires': '0'
+                        }
+                    })
+                    
+                    console.log(`Tentativa ${i + 1} - Response status:`, response.status)
+                    
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`)
+                    }
+
+                    let csvText = await response.text()
+                    
+                    // Se usando allorigins, precisa extrair o conteúdo
+                    if (urls[i].includes('allorigins')) {
+                        const jsonResponse = JSON.parse(csvText)
+                        csvText = jsonResponse.contents
+                    }
+                    
+                    console.log(`Tentativa ${i + 1} - CSV carregado, primeiras 200 chars:`, csvText.substring(0, 200))
+                    
+                    if (!csvText || csvText.trim() === '') {
+                        throw new Error('Planilha está vazia')
+                    }
+                    
+                    this.parseCSV(csvText)
+                    this.lastUpdate = new Date()
+                    console.log(`Sucesso na tentativa ${i + 1}!`)
+                    return // Sai do loop se deu certo
+                } catch (err) {
+                    console.error(`Tentativa ${i + 1} falhou:`, err.message)
+                    if (i === urls.length - 1) {
+                        // Última tentativa falhou
+                        this.error = `Erro ao carregar dados: ${err.message}. Verifique se a planilha está publicada corretamente.`
+                    }
                 }
-                
-                this.parseCSV(csvText)
-                this.lastUpdate = new Date()
-            } catch (err) {
-                this.error = `Erro ao carregar dados: ${err.message}`
-                console.error('Erro detalhado:', err)
-            } finally {
-                this.loading = false
             }
+            
+            this.loading = false
         },
 
         parseCSV(csvText) {
