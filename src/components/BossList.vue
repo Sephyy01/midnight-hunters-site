@@ -106,6 +106,7 @@ export default {
             headers: [],
             loading: false,
             error: null,
+            lastUpdate: null,
             csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv',
             spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pubhtml'
         }
@@ -119,16 +120,39 @@ export default {
             this.error = null
 
             try {
-                const response = await fetch(this.csvUrl)
+                // Adiciona timestamp para evitar cache
+                const timestamp = new Date().getTime()
+                const urlWithCache = `${this.csvUrl}&t=${timestamp}`
+                
+                console.log('Carregando dados de:', urlWithCache)
+                
+                const response = await fetch(urlWithCache, {
+                    method: 'GET',
+                    headers: {
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache',
+                        'Expires': '0'
+                    }
+                })
+                
+                console.log('Response status:', response.status)
+                
                 if (!response.ok) {
-                    throw new Error('Erro ao buscar dados da planilha')
+                    throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`)
                 }
 
                 const csvText = await response.text()
+                console.log('CSV carregado, primeiras 200 chars:', csvText.substring(0, 200))
+                
+                if (!csvText || csvText.trim() === '') {
+                    throw new Error('Planilha está vazia ou não foi possível carregar os dados')
+                }
+                
                 this.parseCSV(csvText)
+                this.lastUpdate = new Date()
             } catch (err) {
-                this.error = err.message || 'Erro desconhecido ao carregar dados'
-                console.error('Erro ao carregar dados:', err)
+                this.error = `Erro ao carregar dados: ${err.message}`
+                console.error('Erro detalhado:', err)
             } finally {
                 this.loading = false
             }
@@ -194,6 +218,15 @@ export default {
 
         async refreshData() {
             await this.loadData()
+        },
+        
+        formatTime(date) {
+            if (!date) return ''
+            return date.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            })
         }
     }
 }
