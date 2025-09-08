@@ -118,64 +118,106 @@ export default {
         async loadData() {
             this.loading = true
             this.error = null
+            
+            console.log('🚀 Iniciando carregamento de dados...')
 
-            // Lista de URLs para tentar (fallbacks)
-            const urls = [
-                `https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv`,
-                `https://api.allorigins.win/get?url=${encodeURIComponent('https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv')}`,
-                `https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv`
-            ]
+            try {
+                // Dados mockados como fallback se nenhuma URL funcionar
+                const mockData = {
+                    headers: ['Nome do Personagem', 'Vocation', 'Level', 'Disponibilidade', 'Observações'],
+                    data: [
+                        ['Exemplo Player 1', 'Elite Knight', '800+', 'Segunda a Sexta 19h-23h', 'Tank principal'],
+                        ['Exemplo Player 2', 'Elder Druid', '750+', 'Fins de semana', 'Healer experiente'],
+                        ['Exemplo Player 3', 'Royal Paladin', '820+', 'Todos os dias 20h-22h', 'DPS'],
+                    ]
+                }
 
-            for (let i = 0; i < urls.length; i++) {
-                try {
-                    const timestamp = new Date().getTime()
-                    const urlWithCache = `${urls[i]}&t=${timestamp}`
-                    
-                    console.log(`Tentativa ${i + 1}: Carregando dados de:`, urlWithCache)
-                    
-                    const response = await fetch(urlWithCache, {
-                        method: 'GET',
-                        headers: {
-                            'Cache-Control': 'no-cache, no-store, must-revalidate',
-                            'Pragma': 'no-cache',
-                            'Expires': '0'
+                // Lista de URLs para tentar (fallbacks)
+                const urls = [
+                    `https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv`,
+                    `https://api.allorigins.win/get?url=${encodeURIComponent('https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv')}`,
+                    `https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPumc5StGjCOnwkq_vnorgme3AE4RX2myf3mQWi4Z7si-MlRahFECfxBRyItYt2Ft1ibY9HdqzdWw/pub?output=csv`
+                ]
+
+                for (let i = 0; i < urls.length; i++) {
+                    try {
+                        const timestamp = new Date().getTime()
+                        let urlToUse = urls[i]
+                        
+                        // Para allorigins, não adiciona timestamp na URL original
+                        if (!urlToUse.includes('allorigins')) {
+                            urlToUse += `&t=${timestamp}`
                         }
-                    })
-                    
-                    console.log(`Tentativa ${i + 1} - Response status:`, response.status)
-                    
-                    if (!response.ok) {
-                        throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`)
-                    }
+                        
+                        console.log(`📡 Tentativa ${i + 1}: ${urlToUse.substring(0, 100)}...`)
+                        
+                        const controller = new AbortController()
+                        const timeoutId = setTimeout(() => controller.abort(), 10000) // 10s timeout
+                        
+                        const response = await fetch(urlToUse, {
+                            method: 'GET',
+                            signal: controller.signal,
+                            headers: {
+                                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                                'Pragma': 'no-cache',
+                                'Expires': '0'
+                            }
+                        })
+                        
+                        clearTimeout(timeoutId)
+                        
+                        console.log(`✅ Tentativa ${i + 1} - Status:`, response.status, response.statusText)
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+                        }
 
-                    let csvText = await response.text()
-                    
-                    // Se usando allorigins, precisa extrair o conteúdo
-                    if (urls[i].includes('allorigins')) {
-                        const jsonResponse = JSON.parse(csvText)
-                        csvText = jsonResponse.contents
-                    }
-                    
-                    console.log(`Tentativa ${i + 1} - CSV carregado, primeiras 200 chars:`, csvText.substring(0, 200))
-                    
-                    if (!csvText || csvText.trim() === '') {
-                        throw new Error('Planilha está vazia')
-                    }
-                    
-                    this.parseCSV(csvText)
-                    this.lastUpdate = new Date()
-                    console.log(`Sucesso na tentativa ${i + 1}!`)
-                    return // Sai do loop se deu certo
-                } catch (err) {
-                    console.error(`Tentativa ${i + 1} falhou:`, err.message)
-                    if (i === urls.length - 1) {
-                        // Última tentativa falhou
-                        this.error = `Erro ao carregar dados: ${err.message}. Verifique se a planilha está publicada corretamente.`
+                        let csvText = await response.text()
+                        
+                        // Se usando allorigins, extrair conteúdo do JSON
+                        if (urls[i].includes('allorigins')) {
+                            try {
+                                const jsonResponse = JSON.parse(csvText)
+                                csvText = jsonResponse.contents
+                                console.log('📊 AllOrigins - Status interno:', jsonResponse.status)
+                            } catch (parseErr) {
+                                throw new Error('Erro ao processar resposta do AllOrigins')
+                            }
+                        }
+                        
+                        console.log(`📋 CSV recebido (${csvText.length} chars):`, csvText.substring(0, 150) + '...')
+                        
+                        if (!csvText || csvText.trim() === '' || csvText.includes('error') || csvText.includes('404')) {
+                            throw new Error('CSV vazio ou inválido')
+                        }
+                        
+                        this.parseCSV(csvText)
+                        this.lastUpdate = new Date()
+                        console.log(`🎉 Sucesso na tentativa ${i + 1}! Dados carregados.`)
+                        return // Sucesso!
+                        
+                    } catch (err) {
+                        console.warn(`❌ Tentativa ${i + 1} falhou:`, err.message)
+                        if (err.name === 'AbortError') {
+                            console.warn('⏰ Timeout na requisição')
+                        }
                     }
                 }
+                
+                // Se chegou aqui, todas as tentativas falharam - usar dados mock
+                console.log('🔄 Todas as tentativas falharam, usando dados de exemplo...')
+                this.headers = mockData.headers
+                this.data = mockData.data
+                this.lastUpdate = new Date()
+                this.error = 'Não foi possível carregar a planilha. Exibindo dados de exemplo. Verifique se a planilha está publicada corretamente.'
+                
+            } catch (err) {
+                console.error('💥 Erro geral:', err)
+                this.error = `Erro inesperado: ${err.message}`
+            } finally {
+                this.loading = false
+                console.log('✨ Carregamento finalizado')
             }
-            
-            this.loading = false
         },
 
         parseCSV(csvText) {
