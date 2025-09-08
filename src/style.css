@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', 'Georgia', serif;
+  background: 
+    linear-gradient(to bottom, rgba(15, 15, 35, 0.95), rgba(26, 26, 46, 0.95)),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="%23000000"/><g fill="%236b46c1" opacity="0.1"><circle cx="50" cy="30" r="2"/><circle cx="150" cy="60" r="1.5"/><circle cx="30" cy="120" r="1"/><circle cx="170" cy="140" r="2.5"/><circle cx="90" cy="180" r="1.2"/><circle cx="120" cy="20" r="0.8"/></g></svg>');
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-attachment: fixed;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Scrollbar medieval */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #1a1a2e, #0f0f23);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #6b46c1, #8b5cf6, #6b46c1);
+  border-radius: 6px;
+  border: 2px solid #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #8b5cf6, #a78bfa, #8b5cf6);
+  border-color: #2d1b69;
+}
+
+/* Seleção de texto medieval */
+::selection {
+  background: linear-gradient(45deg, rgba(107, 70, 193, 0.6), rgba(139, 92, 246, 0.6));
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Animações suaves para elementos interativos */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Tipografia medieval melhorada */
+h1, h2, h3 {
+  font-family: 'Times New Roman', serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Efeito de partículas no background */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(107, 70, 193, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 40% 40%, rgba(192, 132, 252, 0.03) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: -1;
+}
