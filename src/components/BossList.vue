@@ -27,6 +27,10 @@
                     <a :href="spreadsheetUrl" target="_blank" class="view-full-btn">
                         📊 Ver Planilha Completa
                     </a>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdtBc7AQmYfzbC0iqHnJlwRhZnrJqTQ8tWW-WTql63046n5nw/viewform" target="_blank" class="form-btn">
+                        📝 Preencher Formulário
+                    </a>
                 </div>
 
                 <div v-if="loading" class="loading-state">
@@ -365,11 +369,32 @@ export default {
     display: inline-block;
 }
 
+.form-btn {
+    background: linear-gradient(145deg, #059669, #10b981);
+    color: #ffffff;
+    border: 2px solid #10b981;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
 .refresh-btn:hover,
 .view-full-btn:hover {
     background: linear-gradient(145deg, #8b5cf6, #a78bfa);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.form-btn:hover {
+    background: linear-gradient(145deg, #10b981, #34d399);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
 }
 
 .refresh-btn:disabled {
