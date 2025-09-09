@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import BossList from '../components/BossList.vue'
+import Imbuements from '../components/Imbuements.vue'
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     path: '/streamers',
     name: 'Streamers',
     component: () => import('../components/Streamers.vue')
+  },
+  {
+    path: '/imbuements',
+    name: 'Imbuements',
+    component: Imbuements
   }
 ]
 
