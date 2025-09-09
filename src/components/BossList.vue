@@ -81,6 +81,75 @@
                     <p>A planilha parece estar vazia ou não foi possível carregar os dados.</p>
                 </div>
 
+                <!-- Tabelas por Times -->
+                <div v-if="data.length > 0 && teamColumnIndex !== -1" class="teams-section">
+                    <h2 class="section-title">📅 Times Organizados</h2>
+                    
+                    <div class="legend">
+                        <p><strong>🔄</strong> Indica que o jogador está disponível para ambos os times</p>
+                    </div>
+                    
+                    <div class="teams-grid">
+                        <!-- Time Segunda -->
+                        <div class="team-card">
+                            <h3 class="team-title">🗓️ Time Segunda</h3>
+                            <div v-if="timeSegundaCompactData.length > 0" class="team-table-container">
+                                <table class="team-table">
+                                    <thead>
+                                        <tr>
+                                            <th v-for="header in compactHeaders" :key="header.name" class="team-table-header">
+                                                {{ header.name }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(row, index) in timeSegundaCompactData" :key="index" class="team-table-row">
+                                            <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="team-table-cell">
+                                                {{ cell }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="team-stats">
+                                    <span class="team-count">{{ timeSegundaCompactData.length }} membro(s)</span>
+                                </div>
+                            </div>
+                            <div v-else class="empty-team">
+                                <p>Nenhum membro no Time Segunda</p>
+                            </div>
+                        </div>
+
+                        <!-- Time Terça -->
+                        <div class="team-card">
+                            <h3 class="team-title">🗓️ Time Terça</h3>
+                            <div v-if="timeTercaCompactData.length > 0" class="team-table-container">
+                                <table class="team-table">
+                                    <thead>
+                                        <tr>
+                                            <th v-for="header in compactHeaders" :key="header.name" class="team-table-header">
+                                                {{ header.name }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(row, index) in timeTercaCompactData" :key="index" class="team-table-row">
+                                            <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="team-table-cell">
+                                                {{ cell }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="team-stats">
+                                    <span class="team-count">{{ timeTercaCompactData.length }} membro(s)</span>
+                                </div>
+                            </div>
+                            <div v-else class="empty-team">
+                                <p>Nenhum membro no Time Terça</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="info-section">
                     <h2 class="info-title">📋 Informações</h2>
                     <div class="info-content">
@@ -117,6 +186,59 @@ export default {
     },
     mounted() {
         this.loadData()
+    },
+    computed: {
+        timeSegundaData() {
+            return this.filterByTeam('Segunda')
+        },
+        timeTercaData() {
+            return this.filterByTeam('Terça')
+        },
+        teamColumnIndex() {
+            // Procura pela coluna que contém informação do time
+            return this.headers.findIndex(header => 
+                header.toLowerCase().includes('time') || 
+                header.toLowerCase().includes('team') ||
+                header.toLowerCase().includes('qual seu time')
+            )
+        },
+        compactHeaders() {
+            // Headers reduzidos para as tabelas dos times
+            const compactHeadersMap = []
+            
+            // Procura pelas colunas específicas
+            const nickIndex = this.headers.findIndex(header => 
+                header.toLowerCase().includes('qual seu nickname no jogo') ||
+                header.toLowerCase().includes('nickname no jogo') ||
+                header.toLowerCase().includes('nick no jogo') ||
+                header.toLowerCase().includes('nick') ||
+                header.toLowerCase().includes('nome')
+            )
+            
+            const levelIndex = this.headers.findIndex(header => 
+                header.toLowerCase().includes('level') ||
+                header.toLowerCase().includes('nível') ||
+                header.toLowerCase().includes('lvl')
+            )
+            
+            const vocationIndex = this.headers.findIndex(header => 
+                header.toLowerCase().includes('vocação') ||
+                header.toLowerCase().includes('vocation') ||
+                header.toLowerCase().includes('classe')
+            )
+            
+            if (nickIndex !== -1) compactHeadersMap.push({ index: nickIndex, name: 'Nick' })
+            if (levelIndex !== -1) compactHeadersMap.push({ index: levelIndex, name: 'Level' })
+            if (vocationIndex !== -1) compactHeadersMap.push({ index: vocationIndex, name: 'Vocação' })
+            
+            return compactHeadersMap
+        },
+        timeSegundaCompactData() {
+            return this.getCompactData(this.timeSegundaData)
+        },
+        timeTercaCompactData() {
+            return this.getCompactData(this.timeTercaData)
+        }
     },
     methods: {
         async loadData() {
@@ -298,6 +420,47 @@ export default {
 
         async refreshData() {
             await this.loadData()
+        },
+        
+        filterByTeam(teamName) {
+            if (this.teamColumnIndex === -1 || !this.data.length) {
+                return []
+            }
+            
+            return this.data.filter(row => {
+                const teamValue = row[this.teamColumnIndex]
+                if (!teamValue) return false
+                
+                const teamValueLower = teamValue.toLowerCase()
+                const teamNameLower = teamName.toLowerCase()
+                
+                // Se contém "ambos", aparece em ambos os times
+                if (teamValueLower.includes('ambos') || teamValueLower.includes('both')) {
+                    return true
+                }
+                
+                // Senão, verifica se contém o nome do time específico
+                return teamValueLower.includes(teamNameLower)
+            })
+        },
+        
+        getCompactData(teamData) {
+            if (!teamData.length || !this.compactHeaders.length) {
+                return []
+            }
+            
+            return teamData.map(row => {
+                const compactRow = this.compactHeaders.map(header => row[header.index] || '')
+                
+                // Adiciona um indicador se a pessoa escolheu "Ambos"
+                const teamValue = row[this.teamColumnIndex]
+                if (teamValue && (teamValue.toLowerCase().includes('ambos') || teamValue.toLowerCase().includes('both'))) {
+                    // Adiciona um emoji ao nick para indicar que é "Ambos"
+                    compactRow[0] = compactRow[0] + ' 🔄'
+                }
+                
+                return compactRow
+            })
         },
         
         formatTime(date) {
@@ -594,6 +757,148 @@ export default {
     .table-header,
     .table-cell {
         padding: 0.6rem 0.8rem;
+    }
+}
+
+/* Teams Section Styles */
+.teams-section {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Times New Roman', serif;
+}
+
+.legend {
+    background: rgba(107, 70, 193, 0.1);
+    border: 1px solid rgba(107, 70, 193, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0 auto 2rem auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.legend p {
+    color: #c7d2fe;
+    margin: 0;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-card {
+    background: linear-gradient(145deg, rgba(30, 30, 60, 0.8), rgba(45, 45, 75, 0.8));
+    border: 2px solid #6b46c1;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(107, 70, 193, 0.3);
+    border-color: #8b5cf6;
+}
+
+.team-title {
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Times New Roman', serif;
+}
+
+.team-table-container {
+    background: rgba(15, 15, 35, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.team-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.team-table-header {
+    background: linear-gradient(145deg, #4c1d95, #6b46c1);
+    color: #ffffff;
+    padding: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #8b5cf6;
+}
+
+.team-table-row {
+    transition: background-color 0.2s ease;
+}
+
+.team-table-row:nth-child(even) {
+    background: rgba(15, 15, 35, 0.3);
+}
+
+.team-table-row:hover {
+    background: rgba(107, 70, 193, 0.2);
+}
+
+.team-table-cell {
+    padding: 0.8rem;
+    color: #e5e7eb;
+    border-bottom: 1px solid rgba(107, 70, 193, 0.2);
+    font-size: 0.9rem;
+}
+
+.team-stats {
+    background: linear-gradient(145deg, #6b46c1, #8b5cf6);
+    color: #ffffff;
+    padding: 0.8rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.team-count {
+    font-family: 'Times New Roman', serif;
+}
+
+.empty-team {
+    background: rgba(15, 15, 35, 0.6);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .teams-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .team-card {
+        padding: 1rem;
+    }
+    
+    .team-table-header,
+    .team-table-cell {
+        padding: 0.6rem;
+        font-size: 0.8rem;
     }
 }
 </style>
