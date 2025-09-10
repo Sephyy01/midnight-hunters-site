@@ -85,6 +85,14 @@
                 <div v-if="data.length > 0 && teamColumnIndex !== -1" class="teams-section">
                     <h2 class="section-title">📅 Times Organizados</h2>
                     
+                    <div class="teams-controls">
+                        <button @click="toggleEditMode" class="edit-btn teams-edit-btn">
+                            <span v-if="editMode">✅</span>
+                            <span v-else>✏️</span>
+                            {{ editMode ? 'Finalizar Seleção' : 'Selecionar Principais' }}
+                        </button>
+                    </div>
+                    
                     <div class="legend">
                         <p><strong>🔄</strong> Indica que o jogador está disponível para ambos os times</p>
                     </div>
@@ -93,25 +101,54 @@
                         <!-- Time Segunda -->
                         <div class="team-card">
                             <h3 class="team-title">🗓️ Time Segunda</h3>
+                            
+                            <!-- Controles de seleção (visível apenas no modo de edição) -->
+                            <div v-if="editMode && timeSegundaCompactData.length > 0" class="selection-controls">
+                                <div class="selection-info">
+                                    <strong>{{ getSelectedCount('segunda') }}</strong> de <strong>{{ getTotalCount('segunda') }}</strong> selecionados como principais
+                                </div>
+                                <div class="selection-buttons">
+                                    <button @click="selectAllPlayers('segunda')" class="select-all-btn">Selecionar Todos</button>
+                                    <button @click="clearAllSelections('segunda')" class="clear-all-btn">Limpar Seleção</button>
+                                </div>
+                            </div>
+                            
                             <div v-if="timeSegundaCompactData.length > 0" class="team-table-container">
                                 <table class="team-table">
                                     <thead>
                                         <tr>
+                                            <th v-if="editMode" class="team-table-header checkbox-header">Principal</th>
                                             <th v-for="header in compactHeaders" :key="header.name" class="team-table-header">
                                                 {{ header.name }}
                                             </th>
+                                            <th v-if="!editMode && getSelectedCount('segunda') > 0" class="team-table-header">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in timeSegundaCompactData" :key="index" class="team-table-row">
+                                        <tr v-for="(row, index) in timeSegundaCompactData" :key="index" class="team-table-row" :class="{ 'selected-player': !editMode && isPlayerSelected('segunda', index) }">
+                                            <td v-if="editMode" class="team-table-cell checkbox-cell">
+                                                <input 
+                                                    type="checkbox" 
+                                                    :checked="isPlayerSelected('segunda', index)"
+                                                    @change="togglePlayerSelection('segunda', index)"
+                                                    class="player-checkbox"
+                                                />
+                                            </td>
                                             <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="team-table-cell">
                                                 {{ cell }}
+                                            </td>
+                                            <td v-if="!editMode && getSelectedCount('segunda') > 0" class="team-table-cell status-cell">
+                                                <span v-if="isPlayerSelected('segunda', index)" class="status-principal">⭐ Principal</span>
+                                                <span v-else class="status-suplente">🔄 Suplente</span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="team-stats">
                                     <span class="team-count">{{ timeSegundaCompactData.length }} membro(s)</span>
+                                    <span v-if="getSelectedCount('segunda') > 0" class="selection-count">
+                                        | {{ getSelectedCount('segunda') }} principais, {{ getTotalCount('segunda') - getSelectedCount('segunda') }} suplentes
+                                    </span>
                                 </div>
                             </div>
                             <div v-else class="empty-team">
@@ -122,25 +159,54 @@
                         <!-- Time Terça -->
                         <div class="team-card">
                             <h3 class="team-title">🗓️ Time Terça</h3>
+                            
+                            <!-- Controles de seleção (visível apenas no modo de edição) -->
+                            <div v-if="editMode && timeTercaCompactData.length > 0" class="selection-controls">
+                                <div class="selection-info">
+                                    <strong>{{ getSelectedCount('terca') }}</strong> de <strong>{{ getTotalCount('terca') }}</strong> selecionados como principais
+                                </div>
+                                <div class="selection-buttons">
+                                    <button @click="selectAllPlayers('terca')" class="select-all-btn">Selecionar Todos</button>
+                                    <button @click="clearAllSelections('terca')" class="clear-all-btn">Limpar Seleção</button>
+                                </div>
+                            </div>
+                            
                             <div v-if="timeTercaCompactData.length > 0" class="team-table-container">
                                 <table class="team-table">
                                     <thead>
                                         <tr>
+                                            <th v-if="editMode" class="team-table-header checkbox-header">Principal</th>
                                             <th v-for="header in compactHeaders" :key="header.name" class="team-table-header">
                                                 {{ header.name }}
                                             </th>
+                                            <th v-if="!editMode && getSelectedCount('terca') > 0" class="team-table-header">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in timeTercaCompactData" :key="index" class="team-table-row">
+                                        <tr v-for="(row, index) in timeTercaCompactData" :key="index" class="team-table-row" :class="{ 'selected-player': !editMode && isPlayerSelected('terca', index) }">
+                                            <td v-if="editMode" class="team-table-cell checkbox-cell">
+                                                <input 
+                                                    type="checkbox" 
+                                                    :checked="isPlayerSelected('terca', index)"
+                                                    @change="togglePlayerSelection('terca', index)"
+                                                    class="player-checkbox"
+                                                />
+                                            </td>
                                             <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="team-table-cell">
                                                 {{ cell }}
+                                            </td>
+                                            <td v-if="!editMode && getSelectedCount('terca') > 0" class="team-table-cell status-cell">
+                                                <span v-if="isPlayerSelected('terca', index)" class="status-principal">⭐ Principal</span>
+                                                <span v-else class="status-suplente">🔄 Suplente</span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="team-stats">
                                     <span class="team-count">{{ timeTercaCompactData.length }} membro(s)</span>
+                                    <span v-if="getSelectedCount('terca') > 0" class="selection-count">
+                                        | {{ getSelectedCount('terca') }} principais, {{ getTotalCount('terca') - getSelectedCount('terca') }} suplentes
+                                    </span>
                                 </div>
                             </div>
                             <div v-else class="empty-team">
@@ -181,7 +247,12 @@ export default {
             error: null,
             lastUpdate: null,
             csvUrl: 'https://docs.google.com/spreadsheets/d/1pQ1OoZkp8gj_nkyW0INQ4HCIw0cWQ80FOFxLhF3r55c/export?format=csv&gid=314246739',
-            spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/1pQ1OoZkp8gj_nkyW0INQ4HCIw0cWQ80FOFxLhF3r55c/edit?gid=314246739#gid=314246739'
+            spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/1pQ1OoZkp8gj_nkyW0INQ4HCIw0cWQ80FOFxLhF3r55c/edit?gid=314246739#gid=314246739',
+            selectedPlayers: {
+                segunda: new Set(),
+                terca: new Set()
+            },
+            editMode: false
         }
     },
     mounted() {
@@ -470,6 +541,44 @@ export default {
                 minute: '2-digit',
                 second: '2-digit'
             })
+        },
+        
+        toggleEditMode() {
+            this.editMode = !this.editMode
+        },
+        
+        togglePlayerSelection(team, playerIndex) {
+            const key = `${team}-${playerIndex}`
+            if (this.selectedPlayers[team].has(key)) {
+                this.selectedPlayers[team].delete(key)
+            } else {
+                this.selectedPlayers[team].add(key)
+            }
+        },
+        
+        isPlayerSelected(team, playerIndex) {
+            const key = `${team}-${playerIndex}`
+            return this.selectedPlayers[team].has(key)
+        },
+        
+        selectAllPlayers(team) {
+            const teamData = team === 'segunda' ? this.timeSegundaCompactData : this.timeTercaCompactData
+            teamData.forEach((player, index) => {
+                const key = `${team}-${index}`
+                this.selectedPlayers[team].add(key)
+            })
+        },
+        
+        clearAllSelections(team) {
+            this.selectedPlayers[team].clear()
+        },
+        
+        getSelectedCount(team) {
+            return this.selectedPlayers[team].size
+        },
+        
+        getTotalCount(team) {
+            return team === 'segunda' ? this.timeSegundaCompactData.length : this.timeTercaCompactData.length
         }
     }
 }
@@ -547,6 +656,21 @@ export default {
     display: inline-block;
 }
 
+.edit-btn {
+    background: linear-gradient(145deg, #f59e0b, #f97316);
+    color: #ffffff;
+    border: 2px solid #f59e0b;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
 .refresh-btn:hover,
 .view-full-btn:hover {
     background: linear-gradient(145deg, #8b5cf6, #a78bfa);
@@ -558,6 +682,12 @@ export default {
     background: linear-gradient(145deg, #10b981, #34d399);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(145deg, #f97316, #fb923c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
 }
 
 .refresh-btn:disabled {
@@ -766,11 +896,21 @@ export default {
     margin-bottom: 3rem;
 }
 
+.teams-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.teams-edit-btn {
+    margin: 0;
+}
+
 .section-title {
     font-size: 2.5rem;
     color: #ffffff;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     font-family: 'Times New Roman', serif;
 }
@@ -900,5 +1040,97 @@ export default {
         padding: 0.6rem;
         font-size: 0.8rem;
     }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .teams-edit-btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.3rem;
+    }
+}
+
+/* Selection Controls Styles */
+.selection-controls {
+    background: rgba(107, 70, 193, 0.1);
+    border: 1px solid rgba(107, 70, 193, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.selection-info {
+    color: #c7d2fe;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.selection-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.select-all-btn,
+.clear-all-btn {
+    background: linear-gradient(145deg, #4c1d95, #6b46c1);
+    color: #ffffff;
+    border: 1px solid #6b46c1;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-all-btn:hover,
+.clear-all-btn:hover {
+    background: linear-gradient(145deg, #6b46c1, #8b5cf6);
+    transform: translateY(-1px);
+}
+
+.checkbox-header {
+    width: 80px;
+    text-align: center;
+}
+
+.checkbox-cell {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.player-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #8b5cf6;
+    cursor: pointer;
+}
+
+.selected-player {
+    background: rgba(139, 92, 246, 0.1) !important;
+    border-left: 3px solid #8b5cf6;
+}
+
+.status-cell {
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-principal {
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+.status-suplente {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.selection-count {
+    color: #c7d2fe;
+    font-size: 0.8rem;
+    font-style: italic;
 }
 </style>
