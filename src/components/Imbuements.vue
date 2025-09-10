@@ -6,76 +6,106 @@
             
             <div class="imbuements-grid">
                 <div class="imbuement-card">
-                    <h3 class="imbuement-title">🩸 Powerful Life Leech</h3>
+                    <h3 class="imbuement-title">
+                        <img src="../assets/images/imbuimentos/life/vampirism-3.webp">
+                        Powerful Life Leech</h3>
                     <div class="materials-list">
                         <div class="material-item">
                             <span class="quantity">25x</span>
-                            <span class="item-name">Vampire Teeth</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/life/vampire-teeth.gif">
+                                Vampire Teeth</span>
                         </div>
                         <div class="material-item">
                             <span class="quantity">15x</span>
-                            <span class="item-name">Bloody Pincers</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/life/bloody-pincers.webp" alt="">
+                                Bloody Pincers</span>
                         </div>
                         <div class="material-item">
                             <span class="quantity">5x</span>
-                            <span class="item-name">Piece of Dead Brain</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/life/piece-of-dead-brain.webp">
+                                Piece of Dead Brain</span>
                         </div>
                     </div>
                     <div class="alternative-option">
                         <span class="or-text">OU</span>
                         <div class="gold-token-option">
                             <span class="quantity gold">6x</span>
-                            <span class="item-name">Gold Tokens</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/life/gold-token.webp">
+                                Gold Tokens</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="imbuement-card">
-                    <h3 class="imbuement-title">🌑 Powerful Void</h3>
+                    <h3 class="imbuement-title">
+                        <img src="../assets/images/imbuimentos/mana/void-3.webp">
+                        Powerful Void</h3>
                     <div class="materials-list">
                         <div class="material-item">
                             <span class="quantity">25x</span>
-                            <span class="item-name">Rope Belt</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/mana/rope-belt.webp" alt="">
+                                Rope Belt</span>
                         </div>
                         <div class="material-item">
                             <span class="quantity">25x</span>
-                            <span class="item-name">Silencer Claws</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/mana/silencer-claws.gif">
+                                Silencer Claws</span>
                         </div>
                         <div class="material-item">
                             <span class="quantity">5x</span>
-                            <span class="item-name">Some Grimeleech Wings</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/mana/some-grimeleech-wings.webp" alt="">
+                                Some Grimeleech Wings</span>
                         </div>
                     </div>
                     <div class="alternative-option">
                         <span class="or-text">OU</span>
                         <div class="gold-token-option">
                             <span class="quantity gold">6x</span>
-                            <span class="item-name">Gold Tokens</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/mana/gold-token.webp">
+                                Gold Tokens</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="imbuement-card">
-                    <h3 class="imbuement-title">⚡ Powerful Strike</h3>
+                    <h3 class="imbuement-title">
+                        <img src="../assets/images/imbuimentos/critico/strike-3.webp" alt="">
+                        Powerful Strike</h3>
                     <div class="materials-list">
                         <div class="material-item">
                             <span class="quantity">20x</span>
-                            <span class="item-name">Protective Charm</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/critico/protective-charm.webp" alt="">
+                                Protective Charm</span>
                         </div>
                         <div class="material-item">
                             <span class="quantity">25x</span>
-                            <span class="item-name">Sabretooth</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/critico/sabretooth.webp" alt="">
+                                Sabretooth</span>
                         </div>
                         <div class="material-item">
                             <span class="quantity">5x</span>
-                            <span class="item-name">Vexclaw Talon</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/critico/vexclaw-talon.gif" alt="">
+                                Vexclaw Talon</span>
                         </div>
                     </div>
                     <div class="alternative-option">
                         <span class="or-text">OU</span>
                         <div class="gold-token-option">
                             <span class="quantity gold">6x</span>
-                            <span class="item-name">Gold Tokens</span>
+                            <span class="item-name">
+                                <img src="../assets/images/imbuimentos/critico/gold-token.webp" alt="">
+                                Gold Tokens</span>
                         </div>
                     </div>
                 </div>
@@ -148,9 +178,14 @@ export default {
     font-size: 1.5rem;
     color: #ffffff;
     margin-bottom: 1.5rem;
-    text-align: center;
     font-family: 'Times New Roman', serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    img{
+        margin-right: 2rem;
+    }
 }
 
 .materials-list {
@@ -187,6 +222,12 @@ export default {
     font-size: 1rem;
     flex: 1;
     margin-left: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img{
+        margin-right: 1rem;
+    }
 }
 
 .alternative-option {
