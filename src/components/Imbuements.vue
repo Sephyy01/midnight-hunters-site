@@ -6,6 +6,15 @@
 
             <div class="imbuements-grid">
         <div class="imbuement-card">
+            <!-- Melhor Opção em Destaque -->
+            <div class="best-choice-highlight">
+                <div class="best-choice-content">
+                    <span class="best-choice-label">🏆 MELHOR OPÇÃO</span>
+                    <span class="best-choice-name">6 Gold Tokens</span>
+                    <span class="best-choice-price">246k</span>
+                </div>
+            </div>
+            
             <h3 class="imbuement-title">
                 <img src="../assets/images/imbuimentos/life/vampirism-3.webp">
                 Powerful Life Leech
@@ -63,20 +72,8 @@
                     <div class="scenario-item best-option">
                         <div class="scenario-header">
                             <span class="scenario-rank">🏆 Melhor</span>
-                            <span class="scenario-name">25 Vampire + 4 Gold Tokens</span>
-                            <span class="scenario-price">199k</span>
-                        </div>
-                        <div class="scenario-details">
-                            25 Vampire (35k) + 4 Gold Tokens (164k)
-                        </div>
-                    </div>
-
-                    <div class="scenario-item">
-                        <div class="scenario-header">
-                            <span class="scenario-rank">2°</span>
                             <span class="scenario-name">6 Gold Tokens</span>
                             <span class="scenario-price">246k</span>
-                            <span class="price-difference">+47k</span>
                         </div>
                         <div class="scenario-details">
                             6 Gold Tokens (cobre todos os materiais)
@@ -85,25 +82,37 @@
 
                     <div class="scenario-item">
                         <div class="scenario-header">
-                            <span class="scenario-rank">3°</span>
-                            <span class="scenario-name">Vampire + Bloody + 2 Gold</span>
-                            <span class="scenario-price">267k</span>
-                            <span class="price-difference">+68k</span>
+                            <span class="scenario-rank">2°</span>
+                            <span class="scenario-name">4 Gold Tokens + Dead Brain</span>
+                            <span class="scenario-price">259k</span>
+                            <span class="price-difference">+13k</span>
                         </div>
                         <div class="scenario-details">
-                            25 Vampire (35k) + 15 Bloody (150k) + 2 Gold (82k)
+                            4 Gold Tokens (25 Vampire + 15 Bloody) + 5 Dead Brain (95k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">3°</span>
+                            <span class="scenario-name">Tudo no Market</span>
+                            <span class="scenario-price">280k</span>
+                            <span class="price-difference">+34k</span>
+                        </div>
+                        <div class="scenario-details">
+                            25 Vampire (35k) + 15 Bloody (150k) + 5 Dead Brain (95k)
                         </div>
                     </div>
 
                     <div class="scenario-item">
                         <div class="scenario-header">
                             <span class="scenario-rank">4°</span>
-                            <span class="scenario-name">Tudo no Market</span>
-                            <span class="scenario-price">280k</span>
+                            <span class="scenario-name">2 Gold Tokens + resto</span>
+                            <span class="scenario-price">327k</span>
                             <span class="price-difference">+81k</span>
                         </div>
                         <div class="scenario-details">
-                            25 Vampire (35k) + 15 Bloody (150k) + 5 Dead Brain (95k)
+                            2 Gold Tokens (25 Vampire) + 15 Bloody (150k) + 5 Dead Brain (95k)
                         </div>
                     </div>
                 </div>
@@ -111,6 +120,15 @@
         </div>
 
         <div class="imbuement-card">
+            <!-- Melhor Opção em Destaque -->
+            <div class="best-choice-highlight">
+                <div class="best-choice-content">
+                    <span class="best-choice-label">🏆 MELHOR OPÇÃO</span>
+                    <span class="best-choice-name">2 Gold Tokens + resto</span>
+                    <span class="best-choice-price">138k</span>
+                </div>
+            </div>
+            
             <h3 class="imbuement-title">
                 <img src="../assets/images/imbuimentos/mana/void-3.webp">
                 Powerful Void
@@ -168,8 +186,20 @@
                     <div class="scenario-item best-option">
                         <div class="scenario-header">
                             <span class="scenario-rank">🏆 Melhor</span>
+                            <span class="scenario-name">2 Gold Tokens + resto</span>
+                            <span class="scenario-price">138k</span>
+                        </div>
+                        <div class="scenario-details">
+                            2 Gold Tokens (25 Rope) + 25 Silencer (45k) + 5 Grimeleech (11k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">2°</span>
                             <span class="scenario-name">Tudo no Market</span>
                             <span class="scenario-price">156k</span>
+                            <span class="price-difference">+18k</span>
                         </div>
                         <div class="scenario-details">
                             25 Rope Belt (100k) + 25 Silencer (45k) + 5 Grimeleech (11k)
@@ -178,37 +208,25 @@
 
                     <div class="scenario-item">
                         <div class="scenario-header">
-                            <span class="scenario-rank">2°</span>
-                            <span class="scenario-name">Rope + Silencer + 2 Gold</span>
-                            <span class="scenario-price">227k</span>
-                            <span class="price-difference">+71k</span>
-                        </div>
-                        <div class="scenario-details">
-                            25 Rope (100k) + 25 Silencer (45k) + 2 Gold (82k)
-                        </div>
-                    </div>
-
-                    <div class="scenario-item">
-                        <div class="scenario-header">
                             <span class="scenario-rank">3°</span>
-                            <span class="scenario-name">6 Gold Tokens</span>
-                            <span class="scenario-price">246k</span>
-                            <span class="price-difference">+90k</span>
+                            <span class="scenario-name">4 Gold Tokens + Grimeleech</span>
+                            <span class="scenario-price">175k</span>
+                            <span class="price-difference">+37k</span>
                         </div>
                         <div class="scenario-details">
-                            6 Gold Tokens (cobre todos os materiais)
+                            4 Gold Tokens (25 Rope + 25 Silencer) + 5 Grimeleech (11k)
                         </div>
                     </div>
 
                     <div class="scenario-item">
                         <div class="scenario-header">
                             <span class="scenario-rank">4°</span>
-                            <span class="scenario-name">25 Rope + 4 Gold Tokens</span>
-                            <span class="scenario-price">264k</span>
+                            <span class="scenario-name">6 Gold Tokens</span>
+                            <span class="scenario-price">246k</span>
                             <span class="price-difference">+108k</span>
                         </div>
                         <div class="scenario-details">
-                            25 Rope (100k) + 4 Gold Tokens (164k)
+                            6 Gold Tokens (cobre todos os materiais)
                         </div>
                     </div>
                 </div>
@@ -216,8 +234,17 @@
         </div>
 
         <div class="imbuement-card">
+            <!-- Melhor Opção em Destaque -->
+            <div class="best-choice-highlight">
+                <div class="best-choice-content">
+                    <span class="best-choice-label">🏆 MELHOR OPÇÃO</span>
+                    <span class="best-choice-name">4 Gold Tokens + Vexclaw</span>
+                    <span class="best-choice-price">171k</span>
+                </div>
+            </div>
+            
             <h3 class="imbuement-title">
-                <img src="../assets/images/imbuimentos/critico/strike-3.webp" alt="">
+                <img src="../assets/images/imbuimientos/critico/strike-3.webp" alt="">
                 Powerful Strike
             </h3>
             <div class="materials-list">
@@ -273,11 +300,11 @@
                     <div class="scenario-item best-option">
                         <div class="scenario-header">
                             <span class="scenario-rank">🏆 Melhor</span>
-                            <span class="scenario-name">20 Protective + 4 Gold</span>
-                            <span class="scenario-price">206k</span>
+                            <span class="scenario-name">4 Gold Tokens + Vexclaw</span>
+                            <span class="scenario-price">171k</span>
                         </div>
                         <div class="scenario-details">
-                            20 Protective (42k) + 4 Gold Tokens (164k)
+                            4 Gold Tokens (20 Protective + 25 Sabretooth) + 5 Vexclaw (7k)
                         </div>
                     </div>
 
@@ -286,7 +313,7 @@
                             <span class="scenario-rank">2°</span>
                             <span class="scenario-name">Tudo no Market</span>
                             <span class="scenario-price">214k</span>
-                            <span class="price-difference">+8k</span>
+                            <span class="price-difference">+43k</span>
                         </div>
                         <div class="scenario-details">
                             20 Protective (42k) + 25 Sabretooth (165k) + 5 Vexclaw (7k)
@@ -298,7 +325,7 @@
                             <span class="scenario-rank">3°</span>
                             <span class="scenario-name">6 Gold Tokens</span>
                             <span class="scenario-price">246k</span>
-                            <span class="price-difference">+40k</span>
+                            <span class="price-difference">+75k</span>
                         </div>
                         <div class="scenario-details">
                             6 Gold Tokens (cobre todos os materiais)
@@ -308,12 +335,12 @@
                     <div class="scenario-item">
                         <div class="scenario-header">
                             <span class="scenario-rank">4°</span>
-                            <span class="scenario-name">Protective + Sabretooth + 2 Gold</span>
-                            <span class="scenario-price">289k</span>
+                            <span class="scenario-name">2 Gold Tokens + resto</span>
+                            <span class="scenario-price">254k</span>
                             <span class="price-difference">+83k</span>
                         </div>
                         <div class="scenario-details">
-                            20 Protective (42k) + 25 Sabretooth (165k) + 2 Gold (82k)
+                            2 Gold Tokens (20 Protective) + 25 Sabretooth (165k) + 5 Vexclaw (7k)
                         </div>
                     </div>
                 </div>
@@ -382,6 +409,55 @@ export default {
     transform: translateY(-5px);
     box-shadow: 0 12px 35px rgba(107, 70, 193, 0.3);
     border-color: #8b5cf6;
+}
+
+/* Destaque da Melhor Opção */
+.best-choice-highlight {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(16, 185, 129, 0.15));
+    border: 2px solid #10b981;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2); }
+    to { box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4); }
+}
+
+.best-choice-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.best-choice-label {
+    font-weight: bold;
+    color: #10b981;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.best-choice-name {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex: 1;
+    text-align: center;
+}
+
+.best-choice-price {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
 }
 
 .imbuement-title {
