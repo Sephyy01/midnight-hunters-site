@@ -91,6 +91,10 @@
                             <span v-else>✏️</span>
                             {{ editMode ? 'Finalizar Seleção' : 'Selecionar Principais' }}
                         </button>
+                        
+                        <button @click="resetTeamAssignments" class="edit-btn reset-btn" v-show="localTeamAssignments.size > 0">
+                            🔄 Resetar Mudanças
+                        </button>
                     </div>
                     
                     <div class="legend">
@@ -99,7 +103,11 @@
                     
                     <div class="teams-grid">
                         <!-- Time Segunda -->
-                        <div class="team-card">
+                        <div class="team-card" 
+                             @dragover="onDragOver" 
+                             @dragenter="onDragEnter" 
+                             @dragleave="onDragLeave" 
+                             @drop="onDrop($event, 'segunda')">
                             <h3 class="team-title">🗓️ Time Segunda</h3>
                             
                             <!-- Controles de seleção (visível apenas no modo de edição) -->
@@ -125,7 +133,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in timeSegundaCompactData" :key="index" class="team-table-row" :class="{ 'selected-player': !editMode && isPlayerSelected('segunda', index) }">
+                                        <tr v-for="(row, index) in timeSegundaCompactData" 
+                                            :key="index" 
+                                            class="team-table-row" 
+                                            :class="{ 'selected-player': !editMode && isPlayerSelected('segunda', index) }"
+                                            draggable="true"
+                                            @dragstart="onDragStart($event, timeSegundaData[index], 'segunda')"
+                                            @dragend="onDragEnd">
                                             <td v-if="editMode" class="team-table-cell checkbox-cell">
                                                 <input 
                                                     type="checkbox" 
@@ -157,7 +171,11 @@
                         </div>
 
                         <!-- Time Terça -->
-                        <div class="team-card">
+                        <div class="team-card" 
+                             @dragover="onDragOver" 
+                             @dragenter="onDragEnter" 
+                             @dragleave="onDragLeave" 
+                             @drop="onDrop($event, 'terca')">
                             <h3 class="team-title">🗓️ Time Terça</h3>
                             
                             <!-- Controles de seleção (visível apenas no modo de edição) -->
@@ -183,7 +201,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in timeTercaCompactData" :key="index" class="team-table-row" :class="{ 'selected-player': !editMode && isPlayerSelected('terca', index) }">
+                                        <tr v-for="(row, index) in timeTercaCompactData" 
+                                            :key="index" 
+                                            class="team-table-row" 
+                                            :class="{ 'selected-player': !editMode && isPlayerSelected('terca', index) }"
+                                            draggable="true"
+                                            @dragstart="onDragStart($event, timeTercaData[index], 'terca')"
+                                            @dragend="onDragEnd">
                                             <td v-if="editMode" class="team-table-cell checkbox-cell">
                                                 <input 
                                                     type="checkbox" 
@@ -215,7 +239,11 @@
                         </div>
 
                         <!-- Time Sem Fixo -->
-                        <div class="team-card">
+                        <div class="team-card" 
+                             @dragover="onDragOver" 
+                             @dragenter="onDragEnter" 
+                             @dragleave="onDragLeave" 
+                             @drop="onDrop($event, 'semTimeFixo')">
                             <h3 class="team-title">🔄 Sem Time Fixo</h3>
                             
                             <!-- Controles de seleção (visível apenas no modo de edição) -->
@@ -241,7 +269,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in semTimeFixoCompactData" :key="index" class="team-table-row" :class="{ 'selected-player': !editMode && isPlayerSelected('semTimeFixo', index) }">
+                                        <tr v-for="(row, index) in semTimeFixoCompactData" 
+                                            :key="index" 
+                                            class="team-table-row" 
+                                            :class="{ 'selected-player': !editMode && isPlayerSelected('semTimeFixo', index) }"
+                                            draggable="true"
+                                            @dragstart="onDragStart($event, semTimeFixoData[index], 'semTimeFixo')"
+                                            @dragend="onDragEnd">
                                             <td v-if="editMode" class="team-table-cell checkbox-cell">
                                                 <input 
                                                     type="checkbox" 
@@ -311,7 +345,10 @@ export default {
                 terca: new Set(),
                 semTimeFixo: new Set()
             },
-            editMode: false
+            editMode: false,
+            draggedPlayer: null,
+            draggedFromTeam: null,
+            localTeamAssignments: new Map() // Para armazenar modificações locais dos times
         }
     },
     mounted() {
@@ -319,10 +356,10 @@ export default {
     },
     computed: {
         timeSegundaData() {
-            return this.filterByTeam('Segunda')
+            return this.getModifiedTeamData('Segunda')
         },
         timeTercaData() {
-            return this.filterByTeam('Terça')
+            return this.getModifiedTeamData('Terça')
         },
         teamColumnIndex() {
             // Procura pela coluna que contém informação do time
@@ -370,7 +407,7 @@ export default {
             return this.getCompactData(this.timeTercaData)
         },
         semTimeFixoData() {
-            return this.filterByTeam('Sem time fixo')
+            return this.getModifiedTeamData('Sem time fixo')
         },
         semTimeFixoCompactData() {
             return this.getCompactData(this.semTimeFixoData)
@@ -660,6 +697,101 @@ export default {
             if (team === 'terca') return this.timeTercaCompactData.length
             if (team === 'semTimeFixo') return this.semTimeFixoCompactData.length
             return 0
+        },
+        
+        // Métodos para drag and drop
+        getModifiedTeamData(teamName) {
+            const originalData = this.filterByTeam(teamName)
+            const result = []
+            
+            // Adiciona jogadores originais que não foram movidos para outros times
+            originalData.forEach((player, index) => {
+                const playerId = this.getPlayerId(player)
+                const assignedTeam = this.localTeamAssignments.get(playerId)
+                
+                if (!assignedTeam || assignedTeam === teamName) {
+                    result.push(player)
+                }
+            })
+            
+            // Adiciona jogadores que foram movidos PARA este time
+            this.data.forEach(player => {
+                const playerId = this.getPlayerId(player)
+                const assignedTeam = this.localTeamAssignments.get(playerId)
+                
+                if (assignedTeam === teamName) {
+                    // Verifica se não é originalmente deste time
+                    const isOriginallyFromThisTeam = originalData.some(originalPlayer => 
+                        this.getPlayerId(originalPlayer) === playerId
+                    )
+                    
+                    if (!isOriginallyFromThisTeam) {
+                        result.push(player)
+                    }
+                }
+            })
+            
+            return result
+        },
+        
+        getPlayerId(player) {
+            // Cria um ID único baseado no nickname e level do jogador
+            const nickIndex = this.compactHeaders.find(h => h.name === 'Nick')?.index || 0
+            const levelIndex = this.compactHeaders.find(h => h.name === 'Level')?.index || 1
+            return `${player[nickIndex]}-${player[levelIndex]}`
+        },
+        
+        onDragStart(event, player, team) {
+            this.draggedPlayer = player
+            this.draggedFromTeam = team
+            event.dataTransfer.effectAllowed = 'move'
+            event.target.classList.add('dragging')
+        },
+        
+        onDragEnd(event) {
+            event.target.classList.remove('dragging')
+            this.draggedPlayer = null
+            this.draggedFromTeam = null
+        },
+        
+        onDragOver(event) {
+            event.preventDefault()
+            event.dataTransfer.dropEffect = 'move'
+        },
+        
+        onDragEnter(event) {
+            event.preventDefault()
+            event.currentTarget.classList.add('drag-over')
+        },
+        
+        onDragLeave(event) {
+            event.currentTarget.classList.remove('drag-over')
+        },
+        
+        onDrop(event, targetTeam) {
+            event.preventDefault()
+            event.currentTarget.classList.remove('drag-over')
+            
+            if (this.draggedPlayer && this.draggedFromTeam !== targetTeam) {
+                const playerId = this.getPlayerId(this.draggedPlayer)
+                
+                // Mapeia nomes de equipe para os valores corretos
+                const teamMapping = {
+                    'segunda': 'Segunda',
+                    'terca': 'Terça',
+                    'semTimeFixo': 'Sem time fixo'
+                }
+                
+                const mappedTeam = teamMapping[targetTeam] || targetTeam
+                this.localTeamAssignments.set(playerId, mappedTeam)
+                
+                console.log(`🔄 Jogador ${playerId} movido de ${this.draggedFromTeam} para ${mappedTeam}`)
+            }
+        },
+        
+        resetTeamAssignments() {
+            this.localTeamAssignments.clear()
+            console.log('🔄 Assignments locais resetados')
         }
     }
 }
@@ -1212,5 +1344,55 @@ export default {
     color: #c7d2fe;
     font-size: 0.8rem;
     font-style: italic;
+}
+
+/* Drag and Drop Styles */
+.team-table-row[draggable="true"] {
+    cursor: move;
+    transition: all 0.2s ease;
+}
+
+.team-table-row[draggable="true"]:hover {
+    background: rgba(107, 70, 193, 0.3);
+}
+
+.team-table-row[draggable="true"]:active {
+    opacity: 0.8;
+}
+
+.team-table-row.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+.team-card.drag-over {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.team-card {
+    transition: all 0.3s ease;
+}
+
+.reset-btn {
+    background: linear-gradient(145deg, #dc2626, #ef4444);
+    color: #ffffff;
+    border: 2px solid #dc2626;
+    margin-left: 1rem;
+}
+
+.reset-btn:hover {
+    background: linear-gradient(145deg, #ef4444, #f87171);
+    border-color: #ef4444;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.teams-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 </style>
