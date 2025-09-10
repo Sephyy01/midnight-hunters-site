@@ -373,14 +373,28 @@ export default {
             // Headers reduzidos para as tabelas dos times
             const compactHeadersMap = []
             
-            // Procura pelas colunas específicas
-            const nickIndex = this.headers.findIndex(header => 
+            // Procura pela coluna específica do nickname (mais específico primeiro)
+            let nickIndex = this.headers.findIndex(header => 
                 header.toLowerCase().includes('qual seu nickname no jogo') ||
                 header.toLowerCase().includes('nickname no jogo') ||
-                header.toLowerCase().includes('nick no jogo') ||
-                header.toLowerCase().includes('nick') ||
-                header.toLowerCase().includes('nome')
+                header.toLowerCase().includes('nick no jogo')
             )
+            
+            // Se não encontrou, tenta variações mais específicas
+            if (nickIndex === -1) {
+                nickIndex = this.headers.findIndex(header => 
+                    header.toLowerCase().includes('nickname') && 
+                    !header.toLowerCase().includes('qual seu nome')
+                )
+            }
+            
+            // Como último recurso, procura por 'nick' mas não 'nome'
+            if (nickIndex === -1) {
+                nickIndex = this.headers.findIndex(header => 
+                    header.toLowerCase().includes('nick') && 
+                    !header.toLowerCase().includes('qual seu nome')
+                )
+            }
             
             const levelIndex = this.headers.findIndex(header => 
                 header.toLowerCase().includes('level') ||
@@ -394,7 +408,15 @@ export default {
                 header.toLowerCase().includes('classe')
             )
             
-            if (nickIndex !== -1) compactHeadersMap.push({ index: nickIndex, name: 'Nick' })
+            // Adiciona as colunas na ordem desejada
+            console.log('🔍 Debug compactHeaders: nickIndex =', nickIndex)
+            if (nickIndex !== -1) {
+                console.log('✅ Coluna de nickname encontrada:', this.headers[nickIndex])
+                compactHeadersMap.push({ index: nickIndex, name: 'Nickname no Jogo' })
+            } else {
+                console.log('❌ Coluna de nickname não encontrada')
+                console.log('📋 Headers disponíveis:', this.headers)
+            }
             if (levelIndex !== -1) compactHeadersMap.push({ index: levelIndex, name: 'Level' })
             if (vocationIndex !== -1) compactHeadersMap.push({ index: vocationIndex, name: 'Vocação' })
             
@@ -736,7 +758,7 @@ export default {
         
         getPlayerId(player) {
             // Cria um ID único baseado no nickname e level do jogador
-            const nickIndex = this.compactHeaders.find(h => h.name === 'Nick')?.index || 0
+            const nickIndex = this.compactHeaders.find(h => h.name === 'Nickname no Jogo')?.index || 0
             const levelIndex = this.compactHeaders.find(h => h.name === 'Level')?.index || 1
             return `${player[nickIndex]}-${player[levelIndex]}`
         },
