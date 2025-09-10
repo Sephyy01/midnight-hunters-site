@@ -86,19 +86,24 @@
                     <h2 class="section-title">📅 Times Organizados</h2>
                     
                     <div class="teams-controls">
-                        <button @click="toggleEditMode" class="edit-btn teams-edit-btn">
+                        <button @click="toggleAdminMode" class="admin-btn" :class="{ 'admin-active': isAdmin }" title="Modo Administrador">
+                            🔐
+                        </button>
+                        
+                        <button v-if="isAdmin" @click="toggleEditMode" class="edit-btn teams-edit-btn">
                             <span v-if="editMode">✅</span>
                             <span v-else>✏️</span>
                             {{ editMode ? 'Finalizar Seleção' : 'Selecionar Principais' }}
                         </button>
                         
-                        <button @click="resetTeamAssignments" class="edit-btn reset-btn" v-show="localTeamAssignments.size > 0">
+                        <button v-if="isAdmin" @click="resetTeamAssignments" class="edit-btn reset-btn" v-show="localTeamAssignments.size > 0">
                             🔄 Resetar Mudanças
                         </button>
                     </div>
                     
                     <div class="legend">
                         <p><strong>🔄</strong> Indica que o jogador está disponível para ambos os times</p>
+                        <p v-if="!isAdmin" class="admin-notice"><strong>🔐</strong> Clique no ícone de cadeado para habilitar edição (apenas admin)</p>
                     </div>
                     
                     <div class="teams-grid">
@@ -137,7 +142,7 @@
                                             :key="index" 
                                             class="team-table-row" 
                                             :class="{ 'selected-player': !editMode && isPlayerSelected('segunda', index) }"
-                                            draggable="true"
+                                            :draggable="isAdmin"
                                             @dragstart="onDragStart($event, timeSegundaData[index], 'segunda')"
                                             @dragend="onDragEnd">
                                             <td v-if="editMode" class="team-table-cell checkbox-cell">
@@ -205,7 +210,7 @@
                                             :key="index" 
                                             class="team-table-row" 
                                             :class="{ 'selected-player': !editMode && isPlayerSelected('terca', index) }"
-                                            draggable="true"
+                                            :draggable="isAdmin"
                                             @dragstart="onDragStart($event, timeTercaData[index], 'terca')"
                                             @dragend="onDragEnd">
                                             <td v-if="editMode" class="team-table-cell checkbox-cell">
@@ -273,7 +278,7 @@
                                             :key="index" 
                                             class="team-table-row" 
                                             :class="{ 'selected-player': !editMode && isPlayerSelected('semTimeFixo', index) }"
-                                            draggable="true"
+                                            :draggable="isAdmin"
                                             @dragstart="onDragStart($event, semTimeFixoData[index], 'semTimeFixo')"
                                             @dragend="onDragEnd">
                                             <td v-if="editMode" class="team-table-cell checkbox-cell">
@@ -305,6 +310,27 @@
                                 <p>Nenhum membro sem time fixo</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Senha Admin -->
+                <div v-if="showAdminModal" class="admin-modal-overlay" @click="closeAdminModal">
+                    <div class="admin-modal" @click.stop>
+                        <h3>🔐 Acesso Admin</h3>
+                        <p>Digite a senha para habilitar modo administrador:</p>
+                        <input 
+                            v-model="adminPassword" 
+                            type="password" 
+                            placeholder="Senha..."
+                            @keyup.enter="checkAdminPassword"
+                            ref="adminPasswordInput"
+                            class="admin-password-input"
+                        />
+                        <div class="admin-modal-buttons">
+                            <button @click="checkAdminPassword" class="admin-confirm-btn">Confirmar</button>
+                            <button @click="closeAdminModal" class="admin-cancel-btn">Cancelar</button>
+                        </div>
+                        <p v-if="adminError" class="admin-error">{{ adminError }}</p>
                     </div>
                 </div>
 
@@ -348,10 +374,18 @@ export default {
             editMode: false,
             draggedPlayer: null,
             draggedFromTeam: null,
-            localTeamAssignments: new Map() // Para armazenar modificações locais dos times
+            localTeamAssignments: new Map(), // Para armazenar modificações locais dos times
+            
+            // Admin local states
+            isAdmin: false,
+            showAdminModal: false,
+            adminPassword: '',
+            adminError: '',
+            correctPassword: 'admin123'
         }
     },
     mounted() {
+        console.log('🔥 BossList mounted - iniciando carregamento de dados...')
         this.loadData()
     },
     computed: {
@@ -764,6 +798,10 @@ export default {
         },
         
         onDragStart(event, player, team) {
+            if (!this.isAdmin) {
+                event.preventDefault()
+                return
+            }
             this.draggedPlayer = player
             this.draggedFromTeam = team
             event.dataTransfer.effectAllowed = 'move'
@@ -771,26 +809,31 @@ export default {
         },
         
         onDragEnd(event) {
+            if (!this.isAdmin) return
             event.target.classList.remove('dragging')
             this.draggedPlayer = null
             this.draggedFromTeam = null
         },
         
         onDragOver(event) {
+            if (!this.isAdmin) return
             event.preventDefault()
             event.dataTransfer.dropEffect = 'move'
         },
         
         onDragEnter(event) {
+            if (!this.isAdmin) return
             event.preventDefault()
             event.currentTarget.classList.add('drag-over')
         },
         
         onDragLeave(event) {
+            if (!this.isAdmin) return
             event.currentTarget.classList.remove('drag-over')
         },
         
         onDrop(event, targetTeam) {
+            if (!this.isAdmin) return
             event.preventDefault()
             event.currentTarget.classList.remove('drag-over')
             
@@ -814,12 +857,61 @@ export default {
         resetTeamAssignments() {
             this.localTeamAssignments.clear()
             console.log('🔄 Assignments locais resetados')
+        },
+
+        handleAdminLogout() {
+            // Reset local states when admin logs out globally
+            this.editMode = false
+            this.resetTeamAssignments()
+            console.log('🚪 BossList: Admin logout recebido')
+        },
+        
+        // Métodos Admin
+        toggleAdminMode() {
+            if (this.isAdmin) {
+                // Se já está admin, desloga
+                this.logoutAdmin()
+            } else {
+                // Se não está admin, mostra modal de senha
+                this.showAdminModal = true
+                this.adminPassword = ''
+                this.adminError = ''
+                this.$nextTick(() => {
+                    if (this.$refs.adminPasswordInput) {
+                        this.$refs.adminPasswordInput.focus()
+                    }
+                })
+            }
+        },
+
+        closeAdminModal() {
+            this.showAdminModal = false
+            this.adminPassword = ''
+            this.adminError = ''
+        },
+
+        checkAdminPassword() {
+            if (this.adminPassword === this.correctPassword) {
+                this.isAdmin = true
+                this.showAdminModal = false
+                this.adminPassword = ''
+                this.adminError = ''
+                console.log('🔐 Modo admin ativado')
+            } else {
+                this.adminError = 'Senha incorreta!'
+                this.adminPassword = ''
+            }
+        },
+
+        logoutAdmin() {
+            this.isAdmin = false
+            this.editMode = false
+            this.resetTeamAssignments()
+            console.log('🚪 Modo admin desativado')
         }
     }
 }
-</script>
-
-<style scoped>
+</script><style scoped>
 .boss-list-container {
     background: linear-gradient(to bottom, rgba(15, 15, 35, 0.9), rgba(26, 26, 46, 0.9));
     min-height: 100vh;
@@ -1382,6 +1474,10 @@ export default {
     opacity: 0.8;
 }
 
+.team-table-row[draggable="false"] {
+    cursor: default;
+}
+
 .team-table-row.dragging {
     opacity: 0.5;
     transform: scale(0.98);
@@ -1395,6 +1491,12 @@ export default {
 
 .team-card {
     transition: all 0.3s ease;
+}
+
+.admin-notice {
+    color: #fbbf24;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
 }
 
 .reset-btn {
@@ -1416,5 +1518,117 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+/* Admin Modal Styles */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.admin-modal {
+    background: linear-gradient(145deg, rgba(30, 30, 60, 0.95), rgba(45, 45, 75, 0.95));
+    border: 2px solid #6b46c1;
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+}
+
+.admin-modal h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Times New Roman', serif;
+}
+
+.admin-modal p {
+    color: #e5e7eb;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.admin-password-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #6b46c1;
+    border-radius: 8px;
+    background: rgba(15, 15, 35, 0.8);
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.admin-password-input:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+.admin-password-input::placeholder {
+    color: #9ca3af;
+}
+
+.admin-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.admin-confirm-btn,
+.admin-cancel-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', serif;
+}
+
+.admin-confirm-btn {
+    background: linear-gradient(145deg, #059669, #10b981);
+    color: #ffffff;
+}
+
+.admin-confirm-btn:hover {
+    background: linear-gradient(145deg, #10b981, #34d399);
+    transform: translateY(-2px);
+}
+
+.admin-cancel-btn {
+    background: linear-gradient(145deg, #6b7280, #9ca3af);
+    color: #ffffff;
+}
+
+.admin-cancel-btn:hover {
+    background: linear-gradient(145deg, #9ca3af, #d1d5db);
+    transform: translateY(-2px);
+}
+
+.admin-error {
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.admin-btn.admin-active {
+    background: linear-gradient(145deg, #059669, #10b981);
+    border-color: #10b981;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
 }
 </style>

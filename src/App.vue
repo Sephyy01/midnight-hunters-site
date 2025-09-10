@@ -10,11 +10,6 @@
           <router-link to="/streamers" class="nav-btn" :class="{ active: $route.name === 'Streamers' }">Streamers</router-link>
           <router-link to="/boss-list" class="nav-btn" :class="{ active: $route.name === 'BossList' }">Boss List</router-link>
           <router-link to="/imbuements" class="nav-btn" :class="{ active: $route.name === 'Imbuements' }">Imbuements</router-link>
-          
-          <!-- Botão Admin -->
-          <button class="admin-btn" title="Modo Administrador">
-            🔐
-          </button>
         </div>
       </div>
     </nav>
@@ -98,34 +93,6 @@ export default {
 }
 
 .nav-btn:active {
-  transform: translateY(0);
-}
-
-/* Admin Button Styles */
-.admin-btn {
-  background: linear-gradient(145deg, #374151, #4b5563);
-  color: #ffffff;
-  border: 2px solid #6b7280;
-  padding: 0.7rem 1rem;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Times New Roman', serif;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 50px;
-}
-
-.admin-btn:hover {
-  background: linear-gradient(145deg, #4b5563, #6b7280);
-  border-color: #9ca3af;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(75, 85, 99, 0.3);
-}
-
-.admin-btn:active {
   transform: translateY(0);
 }
 
