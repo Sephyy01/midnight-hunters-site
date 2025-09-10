@@ -3,112 +3,322 @@
         <div class="container">
             <h1 class="page-title">⚔️ Imbuements</h1>
             <p class="page-subtitle">Receitas e materiais necessários para imbuements</p>
-            
+
             <div class="imbuements-grid">
-                <div class="imbuement-card">
-                    <h3 class="imbuement-title">
-                        <img src="../assets/images/imbuimentos/life/vampirism-3.webp">
-                        Powerful Life Leech</h3>
-                    <div class="materials-list">
-                        <div class="material-item">
-                            <span class="quantity">25x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/life/vampire-teeth.gif">
-                                Vampire Teeth</span>
-                        </div>
-                        <div class="material-item">
-                            <span class="quantity">15x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/life/bloody-pincers.webp" alt="">
-                                Bloody Pincers</span>
-                        </div>
-                        <div class="material-item">
-                            <span class="quantity">5x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/life/piece-of-dead-brain.webp">
-                                Piece of Dead Brain</span>
-                        </div>
-                    </div>
-                    <div class="alternative-option">
-                        <span class="or-text">OU</span>
-                        <div class="gold-token-option">
-                            <span class="quantity gold">6x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/life/gold-token.webp">
-                                Gold Tokens</span>
-                        </div>
+        <div class="imbuement-card">
+            <h3 class="imbuement-title">
+                <img src="../assets/images/imbuimentos/life/vampirism-3.webp">
+                Powerful Life Leech
+            </h3>
+            <div class="materials-list">
+                <div class="material-item">
+                    <span class="quantity">25x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/life/vampire-teeth.gif">
+                        Vampire Teeth</span>
+                    <div class="price-info">
+                        <span class="unit-price">1.4k cada</span>
+                        <span class="total-price">= 35k total</span>
                     </div>
                 </div>
+                <div class="material-item">
+                    <span class="quantity">15x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/life/bloody-pincers.webp" alt="">
+                        Bloody Pincers</span>
+                    <div class="price-info">
+                        <span class="unit-price">10k cada</span>
+                        <span class="total-price">= 150k total</span>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <span class="quantity">5x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/life/piece-of-dead-brain.webp">
+                        Piece of Dead Brain</span>
+                    <div class="price-info">
+                        <span class="unit-price">19k cada</span>
+                        <span class="total-price">= 95k total</span>
+                    </div>
+                </div>
+            </div>
+            <div class="alternative-option">
+                <span class="or-text">OU</span>
+                <div class="gold-token-option">
+                    <span class="quantity gold">6x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/life/gold-token.webp">
+                        Gold Tokens</span>
+                    <div class="price-info gold">
+                        <span class="unit-price">41k cada</span>
+                        <span class="total-price">= 246k total</span>
+                    </div>
+                </div>
+            </div>
 
-                <div class="imbuement-card">
-                    <h3 class="imbuement-title">
-                        <img src="../assets/images/imbuimentos/mana/void-3.webp">
-                        Powerful Void</h3>
-                    <div class="materials-list">
-                        <div class="material-item">
-                            <span class="quantity">25x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/mana/rope-belt.webp" alt="">
-                                Rope Belt</span>
+            <!-- Análise de Cenários -->
+            <div class="scenarios-analysis">
+                <h4 class="scenarios-title">💰 Análise de Cenários</h4>
+                <div class="scenarios-list">
+                    <div class="scenario-item best-option">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">🏆 Melhor</span>
+                            <span class="scenario-name">25 Vampire + 4 Gold Tokens</span>
+                            <span class="scenario-price">199k</span>
                         </div>
-                        <div class="material-item">
-                            <span class="quantity">25x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/mana/silencer-claws.gif">
-                                Silencer Claws</span>
-                        </div>
-                        <div class="material-item">
-                            <span class="quantity">5x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/mana/some-grimeleech-wings.webp" alt="">
-                                Some Grimeleech Wings</span>
+                        <div class="scenario-details">
+                            25 Vampire (35k) + 4 Gold Tokens (164k)
                         </div>
                     </div>
-                    <div class="alternative-option">
-                        <span class="or-text">OU</span>
-                        <div class="gold-token-option">
-                            <span class="quantity gold">6x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/mana/gold-token.webp">
-                                Gold Tokens</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="imbuement-card">
-                    <h3 class="imbuement-title">
-                        <img src="../assets/images/imbuimentos/critico/strike-3.webp" alt="">
-                        Powerful Strike</h3>
-                    <div class="materials-list">
-                        <div class="material-item">
-                            <span class="quantity">20x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/critico/protective-charm.webp" alt="">
-                                Protective Charm</span>
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">2°</span>
+                            <span class="scenario-name">6 Gold Tokens</span>
+                            <span class="scenario-price">246k</span>
+                            <span class="price-difference">+47k</span>
                         </div>
-                        <div class="material-item">
-                            <span class="quantity">25x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/critico/sabretooth.webp" alt="">
-                                Sabretooth</span>
-                        </div>
-                        <div class="material-item">
-                            <span class="quantity">5x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/critico/vexclaw-talon.gif" alt="">
-                                Vexclaw Talon</span>
+                        <div class="scenario-details">
+                            6 Gold Tokens (cobre todos os materiais)
                         </div>
                     </div>
-                    <div class="alternative-option">
-                        <span class="or-text">OU</span>
-                        <div class="gold-token-option">
-                            <span class="quantity gold">6x</span>
-                            <span class="item-name">
-                                <img src="../assets/images/imbuimentos/critico/gold-token.webp" alt="">
-                                Gold Tokens</span>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">3°</span>
+                            <span class="scenario-name">Vampire + Bloody + 2 Gold</span>
+                            <span class="scenario-price">267k</span>
+                            <span class="price-difference">+68k</span>
+                        </div>
+                        <div class="scenario-details">
+                            25 Vampire (35k) + 15 Bloody (150k) + 2 Gold (82k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">4°</span>
+                            <span class="scenario-name">Tudo no Market</span>
+                            <span class="scenario-price">280k</span>
+                            <span class="price-difference">+81k</span>
+                        </div>
+                        <div class="scenario-details">
+                            25 Vampire (35k) + 15 Bloody (150k) + 5 Dead Brain (95k)
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="imbuement-card">
+            <h3 class="imbuement-title">
+                <img src="../assets/images/imbuimentos/mana/void-3.webp">
+                Powerful Void
+            </h3>
+            <div class="materials-list">
+                <div class="material-item">
+                    <span class="quantity">25x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/mana/rope-belt.webp" alt="">
+                        Rope Belt</span>
+                    <div class="price-info">
+                        <span class="unit-price">4k cada</span>
+                        <span class="total-price">= 100k total</span>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <span class="quantity">25x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/mana/silencer-claws.gif">
+                        Silencer Claws</span>
+                    <div class="price-info">
+                        <span class="unit-price">1.8k cada</span>
+                        <span class="total-price">= 45k total</span>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <span class="quantity">5x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/mana/some-grimeleech-wings.webp" alt="">
+                        Some Grimeleech Wings</span>
+                    <div class="price-info">
+                        <span class="unit-price">2.2k cada</span>
+                        <span class="total-price">= 11k total</span>
+                    </div>
+                </div>
+            </div>
+            <div class="alternative-option">
+                <span class="or-text">OU</span>
+                <div class="gold-token-option">
+                    <span class="quantity gold">6x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/mana/gold-token.webp">
+                        Gold Tokens</span>
+                    <div class="price-info gold">
+                        <span class="unit-price">41k cada</span>
+                        <span class="total-price">= 246k total</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Análise de Cenários -->
+            <div class="scenarios-analysis">
+                <h4 class="scenarios-title">💰 Análise de Cenários</h4>
+                <div class="scenarios-list">
+                    <div class="scenario-item best-option">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">🏆 Melhor</span>
+                            <span class="scenario-name">Tudo no Market</span>
+                            <span class="scenario-price">156k</span>
+                        </div>
+                        <div class="scenario-details">
+                            25 Rope Belt (100k) + 25 Silencer (45k) + 5 Grimeleech (11k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">2°</span>
+                            <span class="scenario-name">Rope + Silencer + 2 Gold</span>
+                            <span class="scenario-price">227k</span>
+                            <span class="price-difference">+71k</span>
+                        </div>
+                        <div class="scenario-details">
+                            25 Rope (100k) + 25 Silencer (45k) + 2 Gold (82k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">3°</span>
+                            <span class="scenario-name">6 Gold Tokens</span>
+                            <span class="scenario-price">246k</span>
+                            <span class="price-difference">+90k</span>
+                        </div>
+                        <div class="scenario-details">
+                            6 Gold Tokens (cobre todos os materiais)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">4°</span>
+                            <span class="scenario-name">25 Rope + 4 Gold Tokens</span>
+                            <span class="scenario-price">264k</span>
+                            <span class="price-difference">+108k</span>
+                        </div>
+                        <div class="scenario-details">
+                            25 Rope (100k) + 4 Gold Tokens (164k)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="imbuement-card">
+            <h3 class="imbuement-title">
+                <img src="../assets/images/imbuimentos/critico/strike-3.webp" alt="">
+                Powerful Strike
+            </h3>
+            <div class="materials-list">
+                <div class="material-item">
+                    <span class="quantity">20x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/critico/protective-charm.webp" alt="">
+                        Protective Charm</span>
+                    <div class="price-info">
+                        <span class="unit-price">2.1k cada</span>
+                        <span class="total-price">= 42k total</span>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <span class="quantity">25x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/critico/sabretooth.webp" alt="">
+                        Sabretooth</span>
+                    <div class="price-info">
+                        <span class="unit-price">6.6k cada</span>
+                        <span class="total-price">= 165k total</span>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <span class="quantity">5x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/critico/vexclaw-talon.gif" alt="">
+                        Vexclaw Talon</span>
+                    <div class="price-info">
+                        <span class="unit-price">1.3k cada</span>
+                        <span class="total-price">= 6.5k total</span>
+                    </div>
+                </div>
+            </div>
+            <div class="alternative-option">
+                <span class="or-text">OU</span>
+                <div class="gold-token-option">
+                    <span class="quantity gold">6x</span>
+                    <span class="item-name">
+                        <img src="../assets/images/imbuimentos/critico/gold-token.webp" alt="">
+                        Gold Tokens</span>
+                    <div class="price-info gold">
+                        <span class="unit-price">41k cada</span>
+                        <span class="total-price">= 246k total</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Análise de Cenários -->
+            <div class="scenarios-analysis">
+                <h4 class="scenarios-title">💰 Análise de Cenários</h4>
+                <div class="scenarios-list">
+                    <div class="scenario-item best-option">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">🏆 Melhor</span>
+                            <span class="scenario-name">20 Protective + 4 Gold</span>
+                            <span class="scenario-price">206k</span>
+                        </div>
+                        <div class="scenario-details">
+                            20 Protective (42k) + 4 Gold Tokens (164k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">2°</span>
+                            <span class="scenario-name">Tudo no Market</span>
+                            <span class="scenario-price">214k</span>
+                            <span class="price-difference">+8k</span>
+                        </div>
+                        <div class="scenario-details">
+                            20 Protective (42k) + 25 Sabretooth (165k) + 5 Vexclaw (7k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">3°</span>
+                            <span class="scenario-name">6 Gold Tokens</span>
+                            <span class="scenario-price">246k</span>
+                            <span class="price-difference">+40k</span>
+                        </div>
+                        <div class="scenario-details">
+                            6 Gold Tokens (cobre todos os materiais)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">4°</span>
+                            <span class="scenario-name">Protective + Sabretooth + 2 Gold</span>
+                            <span class="scenario-price">289k</span>
+                            <span class="price-difference">+83k</span>
+                        </div>
+                        <div class="scenario-details">
+                            20 Protective (42k) + 25 Sabretooth (165k) + 2 Gold (82k)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             </div>
         </div>
     </div>
@@ -183,7 +393,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    img{
+
+    img {
         margin-right: 2rem;
     }
 }
@@ -203,6 +414,8 @@ export default {
     border-radius: 8px;
     border-left: 4px solid #6b46c1;
     transition: all 0.2s ease;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .material-item:hover {
@@ -225,9 +438,128 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    img{
+
+    img {
         margin-right: 1rem;
     }
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    min-width: 100px;
+}
+
+.unit-price {
+    color: #c084fc;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.total-price {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.price-info.gold .unit-price {
+    color: #fbbf24;
+}
+
+.price-info.gold .total-price {
+    color: #fbbf24;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+/* Scenarios Analysis Styles */
+.scenarios-analysis {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(107, 70, 193, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(107, 70, 193, 0.3);
+}
+
+.scenarios-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+}
+
+.scenarios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.scenario-item {
+    background: rgba(15, 15, 35, 0.6);
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid #6b7280;
+    transition: all 0.3s ease;
+}
+
+.scenario-item:hover {
+    background: rgba(15, 15, 35, 0.8);
+    transform: translateX(5px);
+}
+
+.scenario-item.best-option {
+    border-left-color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.scenario-item.best-option:hover {
+    background: rgba(16, 185, 129, 0.2);
+}
+
+.scenario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.scenario-rank {
+    font-weight: bold;
+    font-size: 0.9rem;
+    min-width: 60px;
+}
+
+.best-option .scenario-rank {
+    color: #10b981;
+}
+
+.scenario-name {
+    color: #ffffff;
+    font-weight: 600;
+    flex: 1;
+}
+
+.scenario-price {
+    color: #fbbf24;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.price-difference {
+    color: #ef4444;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.scenario-details {
+    color: #c084fc;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-left: 60px;
 }
 
 .alternative-option {
@@ -273,11 +605,11 @@ export default {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .imbuement-card {
         padding: 1.5rem;
     }
-    
+
     .material-item {
         padding: 0.6rem 0.8rem;
     }
