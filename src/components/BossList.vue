@@ -213,6 +213,64 @@
                                 <p>Nenhum membro no Time Terça</p>
                             </div>
                         </div>
+
+                        <!-- Time Sem Fixo -->
+                        <div class="team-card">
+                            <h3 class="team-title">🔄 Sem Time Fixo</h3>
+                            
+                            <!-- Controles de seleção (visível apenas no modo de edição) -->
+                            <div v-if="editMode && semTimeFixoCompactData.length > 0" class="selection-controls">
+                                <div class="selection-info">
+                                    <strong>{{ getSelectedCount('semTimeFixo') }}</strong> de <strong>{{ getTotalCount('semTimeFixo') }}</strong> selecionados como principais
+                                </div>
+                                <div class="selection-buttons">
+                                    <button @click="selectAllPlayers('semTimeFixo')" class="select-all-btn">Selecionar Todos</button>
+                                    <button @click="clearAllSelections('semTimeFixo')" class="clear-all-btn">Limpar Seleção</button>
+                                </div>
+                            </div>
+                            
+                            <div v-if="semTimeFixoCompactData.length > 0" class="team-table-container">
+                                <table class="team-table">
+                                    <thead>
+                                        <tr>
+                                            <th v-if="editMode" class="team-table-header checkbox-header">Principal</th>
+                                            <th v-for="header in compactHeaders" :key="header.name" class="team-table-header">
+                                                {{ header.name }}
+                                            </th>
+                                            <th v-if="!editMode && getSelectedCount('semTimeFixo') > 0" class="team-table-header">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(row, index) in semTimeFixoCompactData" :key="index" class="team-table-row" :class="{ 'selected-player': !editMode && isPlayerSelected('semTimeFixo', index) }">
+                                            <td v-if="editMode" class="team-table-cell checkbox-cell">
+                                                <input 
+                                                    type="checkbox" 
+                                                    :checked="isPlayerSelected('semTimeFixo', index)"
+                                                    @change="togglePlayerSelection('semTimeFixo', index)"
+                                                    class="player-checkbox"
+                                                />
+                                            </td>
+                                            <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="team-table-cell">
+                                                {{ cell }}
+                                            </td>
+                                            <td v-if="!editMode && getSelectedCount('semTimeFixo') > 0" class="team-table-cell status-cell">
+                                                <span v-if="isPlayerSelected('semTimeFixo', index)" class="status-principal">⭐ Principal</span>
+                                                <span v-else class="status-suplente">🔄 Suplente</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="team-stats">
+                                    <span class="team-count">{{ semTimeFixoCompactData.length }} membro(s)</span>
+                                    <span v-if="getSelectedCount('semTimeFixo') > 0" class="selection-count">
+                                        | {{ getSelectedCount('semTimeFixo') }} principais, {{ getTotalCount('semTimeFixo') - getSelectedCount('semTimeFixo') }} suplentes
+                                    </span>
+                                </div>
+                            </div>
+                            <div v-else class="empty-team">
+                                <p>Nenhum membro sem time fixo</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -250,7 +308,8 @@ export default {
             spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/1pQ1OoZkp8gj_nkyW0INQ4HCIw0cWQ80FOFxLhF3r55c/edit?gid=314246739#gid=314246739',
             selectedPlayers: {
                 segunda: new Set(),
-                terca: new Set()
+                terca: new Set(),
+                semTimeFixo: new Set()
             },
             editMode: false
         }
@@ -309,6 +368,12 @@ export default {
         },
         timeTercaCompactData() {
             return this.getCompactData(this.timeTercaData)
+        },
+        semTimeFixoData() {
+            return this.filterByTeam('Sem time fixo')
+        },
+        semTimeFixoCompactData() {
+            return this.getCompactData(this.semTimeFixoData)
         }
     },
     methods: {
@@ -505,9 +570,17 @@ export default {
                 const teamValueLower = teamValue.toLowerCase()
                 const teamNameLower = teamName.toLowerCase()
                 
-                // Se contém "ambos", aparece em ambos os times
+                // Para "Sem time fixo", procura especificamente por essas opções
+                if (teamNameLower.includes('sem time fixo')) {
+                    return teamValueLower.includes('sem time fixo') || 
+                           teamValueLower.includes('sem time') || 
+                           teamValueLower.includes('flexível') ||
+                           teamValueLower.includes('flexible')
+                }
+                
+                // Se contém "ambos", aparece em ambos os times (mas não em "sem time fixo")
                 if (teamValueLower.includes('ambos') || teamValueLower.includes('both')) {
-                    return true
+                    return teamNameLower.includes('segunda') || teamNameLower.includes('terça')
                 }
                 
                 // Senão, verifica se contém o nome do time específico
@@ -562,7 +635,12 @@ export default {
         },
         
         selectAllPlayers(team) {
-            const teamData = team === 'segunda' ? this.timeSegundaCompactData : this.timeTercaCompactData
+            let teamData
+            if (team === 'segunda') teamData = this.timeSegundaCompactData
+            else if (team === 'terca') teamData = this.timeTercaCompactData
+            else if (team === 'semTimeFixo') teamData = this.semTimeFixoCompactData
+            else return
+            
             teamData.forEach((player, index) => {
                 const key = `${team}-${index}`
                 this.selectedPlayers[team].add(key)
@@ -578,7 +656,10 @@ export default {
         },
         
         getTotalCount(team) {
-            return team === 'segunda' ? this.timeSegundaCompactData.length : this.timeTercaCompactData.length
+            if (team === 'segunda') return this.timeSegundaCompactData.length
+            if (team === 'terca') return this.timeTercaCompactData.length
+            if (team === 'semTimeFixo') return this.semTimeFixoCompactData.length
+            return 0
         }
     }
 }
