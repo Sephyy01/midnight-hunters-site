@@ -244,7 +244,7 @@
             </div>
             
             <h3 class="imbuement-title">
-                <img src="../assets/images/imbuimientos/critico/strike-3.webp" alt="">
+                <img src="../assets/images/imbuimentos/critico/strike-3.webp" alt="">
                 Powerful Strike
             </h3>
             <div class="materials-list">
