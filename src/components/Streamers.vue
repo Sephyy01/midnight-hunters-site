@@ -24,12 +24,32 @@ export default {
 <style scoped>
 .streamers-container {
   background: linear-gradient(to bottom, rgba(15, 15, 35, 0.9), rgba(26, 26, 46, 0.9));
+  position: relative;
   min-height: 100vh;
   padding: 2rem 0;
   margin-top: 70px;
 }
 
+/* Marca d'água sutil */
+.streamers-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../assets/images/backgrounds/guild-logo.jpeg');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .container {
+  position: relative;
+  z-index: 2;
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;

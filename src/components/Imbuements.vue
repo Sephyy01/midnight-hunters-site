@@ -363,11 +363,31 @@ export default {
     min-height: 100vh;
     padding: 2rem 0;
     margin-top: 70px;
+    position: relative;
+}
+
+/* Marca d'água da guild */
+.imbuements-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/backgrounds/guild-logo.jpeg');
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .container {
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .page-title {

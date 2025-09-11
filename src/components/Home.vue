@@ -99,11 +99,34 @@ export default {
 </script>
 
 <style scoped>
+.home-container {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(15, 15, 35, 0.9), rgba(26, 26, 46, 0.9));
+}
+
+/* Marca d'água da guild */
+.home-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../assets/images/backgrounds/guild-logo.jpeg');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .header {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 30%, #2d1b69 70%, #4c1d95 100%);
   padding: 3rem 0;
   text-align: center;
   position: relative;
+  z-index: 2;
   border-bottom: 2px solid #6b46c1;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
 }
