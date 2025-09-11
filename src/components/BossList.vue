@@ -1626,9 +1626,34 @@ export default {
     font-weight: 600;
 }
 
+/* Watermark - Guild Logo Background */
+.boss-list-container::before {
+  content: 'Midnight Hunters ⚔️';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgba(139, 92, 246, 0.08);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
 .admin-btn.admin-active {
     background: linear-gradient(145deg, #059669, #10b981);
     border-color: #10b981;
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+@media (max-width: 768px) {
+  .boss-list-container::before {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
 }
 </style>

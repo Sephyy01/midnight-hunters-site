@@ -83,6 +83,24 @@ export default {
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* Watermark - Guild Logo Background */
+.streamers-container::before {
+  content: 'Midnight Hunters ⚔️';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgba(139, 92, 246, 0.08);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
@@ -99,6 +117,11 @@ export default {
   
   .coming-title {
     font-size: 2rem;
+  }
+  
+  .streamers-container::before {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
   }
 }
 </style>

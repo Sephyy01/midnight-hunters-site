@@ -336,6 +336,24 @@ export default {
   margin-top: 1rem;
 }
 
+/* Watermark - Guild Logo Background */
+.home-container::before {
+  content: 'Midnight Hunters ⚔️';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgba(139, 92, 246, 0.08);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
 @media (max-width: 768px) {
   .guild-title {
     font-size: 2.5rem;
@@ -363,6 +381,11 @@ export default {
   .activity-icon {
     margin-right: 0;
     margin-bottom: 0.5rem;
+  }
+  
+  .home-container::before {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
   }
 }
 </style>

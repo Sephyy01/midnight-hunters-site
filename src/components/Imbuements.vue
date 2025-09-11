@@ -671,6 +671,24 @@ export default {
     border-color: #fbbf24;
 }
 
+/* Watermark - Guild Logo Background */
+.imbuements-container::before {
+  content: 'Midnight Hunters ⚔️';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgba(139, 92, 246, 0.08);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
 .quantity.gold {
     color: #fbbf24;
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
@@ -688,6 +706,11 @@ export default {
 
     .material-item {
         padding: 0.6rem 0.8rem;
+    }
+    
+    .imbuements-container::before {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
     }
 }
 </style>
