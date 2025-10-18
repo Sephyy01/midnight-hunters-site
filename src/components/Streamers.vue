@@ -8,14 +8,14 @@
         <!-- Streamer 1: Kaiiomy -->
         <div class="streamer-card">
           <div class="streamer-header">
-            <div class="streamer-avatar">🎮</div>
+            <div class="streamer-avatar">🛡️</div>
             <div class="streamer-info">
               <h3 class="streamer-name">Kaiiomy</h3>
-              <p class="streamer-status">Membro da Guild</p>
+              <p class="streamer-status">Leader da Guild • Knight</p>
             </div>
           </div>
           <div class="streamer-description">
-            <p>Acompanhe as aventuras e hunts épicas do Kaiiomy ao vivo na Twitch!</p>
+            <p>Acompanhe as aventuras do nosso líder Knight! Estratégias de tank, boss hunts épicas e liderança em ação.</p>
           </div>
           <div class="streamer-actions">
             <a href="https://www.twitch.tv/kaiiomy" target="_blank" class="twitch-btn">
@@ -29,17 +29,38 @@
         <!-- Streamer 2: Dansinsz -->
         <div class="streamer-card">
           <div class="streamer-header">
-            <div class="streamer-avatar">🎯</div>
+            <div class="streamer-avatar">�</div>
             <div class="streamer-info">
               <h3 class="streamer-name">Dansinsz</h3>
-              <p class="streamer-status">Membro da Guild</p>
+              <p class="streamer-status">Leader da Guild • Druid</p>
             </div>
           </div>
           <div class="streamer-description">
-            <p>Entre no canal do Dansinsz e veja gameplay de alto nível e estratégias incríveis!</p>
+            <p>Entre no canal do nosso líder Druid e veja gameplay de alto nível, estratégias de healing e team hunts!</p>
           </div>
           <div class="streamer-actions">
             <a href="https://www.twitch.tv/Dansinsz" target="_blank" class="twitch-btn">
+              <span class="twitch-icon">📺</span>
+              Assistir na Twitch
+              <span class="external-link">🔗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Streamer 3: Matheus -->
+        <div class="streamer-card">
+          <div class="streamer-header">
+            <div class="streamer-avatar">🔥</div>
+            <div class="streamer-info">
+              <h3 class="streamer-name">Matheeusz_</h3>
+              <p class="streamer-status">Leader da Guild • Sorcerer</p>
+            </div>
+          </div>
+          <div class="streamer-description">
+            <p>Assista o poder mágico do nosso líder Sorcerer! Dano massivo, combos devastadores e magias épicas!</p>
+          </div>
+          <div class="streamer-actions">
+            <a href="https://www.twitch.tv/matheeusz_" target="_blank" class="twitch-btn">
               <span class="twitch-icon">📺</span>
               Assistir na Twitch
               <span class="external-link">🔗</span>
@@ -52,21 +73,33 @@
         <h2 class="info-title">📺 Sobre os Streamers</h2>
         <div class="info-content">
           <p>
-            Nossos streamers compartilham suas aventuras em Tibia ao vivo! Acompanhe hunts épicas, 
-            boss fights e o dia a dia da guild através de suas transmissões.
+            Nossos líderes compartilham suas aventuras em Tibia ao vivo! Acompanhe a liderança em ação 
+            através de hunts épicas, boss fights e estratégias avançadas da guild.
           </p>
           <div class="info-features">
             <div class="feature-item">
+              <span class="feature-icon">👑</span>
+              <span class="feature-text">Liderança da Guild</span>
+            </div>
+            <div class="feature-item">
               <span class="feature-icon">⚔️</span>
-              <span class="feature-text">Boss Hunts ao Vivo</span>
+              <span class="feature-text">Boss Hunts Épicos</span>
             </div>
             <div class="feature-item">
               <span class="feature-icon">🎯</span>
-              <span class="feature-text">Estratégias e Dicas</span>
+              <span class="feature-text">Estratégias Avançadas</span>
             </div>
             <div class="feature-item">
-              <span class="feature-icon">�</span>
-              <span class="feature-text">Interação com a Comunidade</span>
+              <span class="feature-icon">🛡️</span>
+              <span class="feature-text">Knight Tank</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🌿</span>
+              <span class="feature-text">Druid Healing</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🔥</span>
+              <span class="feature-text">Sorcerer Damage</span>
             </div>
           </div>
         </div>
@@ -116,10 +149,10 @@ export default {
 /* Streamers Grid */
 .streamers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
-  max-width: 1000px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -264,7 +297,7 @@ export default {
 
 .info-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
 }
 
