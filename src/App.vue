@@ -32,9 +32,9 @@ export default {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(90deg, rgba(15, 15, 35, 0.95), rgba(26, 26, 46, 0.95));
+  background: #333333;
   backdrop-filter: blur(10px);
-  border-bottom: 2px solid #6b46c1;
+  border-bottom: 2px solid #444444;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
   height: 70px;
 }
@@ -59,41 +59,47 @@ export default {
 
 .nav-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
 }
 
 .nav-btn {
-  background: linear-gradient(145deg, rgba(107, 70, 193, 0.3), rgba(139, 92, 246, 0.3));
-  color: #ffffff;
-  border: 1px solid #6b46c1;
-  padding: 0.7rem 1.5rem;
+  color: #e5e5e5;
   font-size: 1rem;
   font-weight: 500;
-  border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Times New Roman', serif;
-  letter-spacing: 0.5px;
   text-decoration: none;
   display: inline-block;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #8b5cf6;
+  transition: width 0.3s ease;
 }
 
 .nav-btn:hover {
-  background: linear-gradient(145deg, #6b46c1, #8b5cf6);
-  border-color: #8b5cf6;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  color: #8b5cf6;
+}
+
+.nav-btn:hover::after {
+  width: 100%;
 }
 
 .nav-btn.active {
-  background: linear-gradient(145deg, #6b46c1, #8b5cf6);
-  border-color: #c084fc;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  color: #8b5cf6;
 }
 
-.nav-btn:active {
-  transform: translateY(0);
+.nav-btn.active::after {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -104,11 +110,10 @@ export default {
   }
   
   .nav-buttons {
-    gap: 0.5rem;
+    gap: 1.5rem;
   }
   
   .nav-btn {
-    padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
 }

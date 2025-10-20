@@ -359,7 +359,7 @@ export default {
 
 <style scoped>
 .imbuements-container {
-    background: linear-gradient(to bottom, rgba(15, 15, 35, 0.9), rgba(26, 26, 46, 0.9));
+    background: #1a1a1a;
     min-height: 100vh;
     padding: 2rem 0;
     margin-top: 70px;
@@ -372,21 +372,17 @@ export default {
 
 .page-title {
     font-size: 3rem;
-    color: #ffffff;
+    color: #e5e5e5;
     text-align: center;
     margin-bottom: 1rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-    font-family: 'Times New Roman', serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-weight: 700;
 }
 
 .page-subtitle {
     font-size: 1.2rem;
-    color: #c7d2fe;
+    color: #b3b3b3;
     text-align: center;
     margin-bottom: 3rem;
-    font-family: 'Times New Roman', serif;
 }
 
 .imbuements-grid {
@@ -397,17 +393,17 @@ export default {
 }
 
 .imbuement-card {
-    background: linear-gradient(145deg, rgba(30, 30, 60, 0.8), rgba(45, 45, 75, 0.8));
-    border: 2px solid #6b46c1;
-    border-radius: 15px;
+    background: #2a2a2a;
+    border: 1px solid #444444;
+    border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
 }
 
 .imbuement-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(107, 70, 193, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     border-color: #8b5cf6;
 }
 
@@ -443,7 +439,7 @@ export default {
 }
 
 .best-choice-name {
-    color: #ffffff;
+    color: #e5e5e5;
     font-weight: 600;
     font-size: 1.1rem;
     flex: 1;
@@ -462,10 +458,9 @@ export default {
 
 .imbuement-title {
     font-size: 1.5rem;
-    color: #ffffff;
+    color: #e5e5e5;
     margin-bottom: 1.5rem;
-    font-family: 'Times New Roman', serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -485,29 +480,29 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(15, 15, 35, 0.6);
+    background: #333333;
     padding: 0.8rem 1rem;
     border-radius: 8px;
-    border-left: 4px solid #6b46c1;
+    border-left: 4px solid #7c3aed;
     transition: all 0.2s ease;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
 
 .material-item:hover {
-    background: rgba(15, 15, 35, 0.8);
+    background: #404040;
     border-left-color: #8b5cf6;
 }
 
 .quantity {
     font-weight: bold;
-    color: #fbbf24;
+    color: #f59e0b;
     font-size: 1.1rem;
     min-width: 50px;
 }
 
 .item-name {
-    color: #e5e7eb;
+    color: #e5e5e5;
     font-size: 1rem;
     flex: 1;
     margin-left: 1rem;
@@ -529,7 +524,7 @@ export default {
 }
 
 .unit-price {
-    color: #c084fc;
+    color: #8b5cf6;
     font-size: 0.9rem;
     font-style: italic;
 }
@@ -683,7 +678,7 @@ export default {
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center center;
-  opacity: 1;
+  opacity: 0.05;
   pointer-events: none;
   z-index: -1;
 }

@@ -7,63 +7,39 @@
       <div class="streamers-grid">
         <!-- Streamer 1: Kaiiomy -->
         <div class="streamer-card">
-          <div class="streamer-header">
-            <div class="streamer-avatar">🛡️</div>
-            <div class="streamer-info">
-              <h3 class="streamer-name">Kaiiomy</h3>
-              <p class="streamer-status">Leader da Guild • Knight</p>
-            </div>
-          </div>
-          <div class="streamer-description">
-            <p>Acompanhe as aventuras do nosso líder Knight! Estratégias de tank, boss hunts épicas e liderança em ação.</p>
+          <div class="streamer-avatar">
+            <img src="../assets/Rage_Heavykit.gif" alt="Kaiiomy" class="avatar-image">
           </div>
           <div class="streamer-actions">
             <a href="https://www.twitch.tv/kaiiomy" target="_blank" class="twitch-btn">
               <span class="twitch-icon">📺</span>
               Assistir na Twitch
-              <span class="external-link">🔗</span>
             </a>
           </div>
         </div>
 
         <!-- Streamer 2: Dansinsz -->
         <div class="streamer-card">
-          <div class="streamer-header">
-            <div class="streamer-avatar">�</div>
-            <div class="streamer-info">
-              <h3 class="streamer-name">Dansinsz</h3>
-              <p class="streamer-status">Leader da Guild • Druid</p>
-            </div>
-          </div>
-          <div class="streamer-description">
-            <p>Entre no canal do nosso líder Druid e veja gameplay de alto nível, estratégias de healing e team hunts!</p>
+          <div class="streamer-avatar">
+            <img src="../assets/Dansinsz.gif" alt="Dansinsz" class="avatar-image">
           </div>
           <div class="streamer-actions">
             <a href="https://www.twitch.tv/Dansinsz" target="_blank" class="twitch-btn">
               <span class="twitch-icon">📺</span>
               Assistir na Twitch
-              <span class="external-link">🔗</span>
             </a>
           </div>
         </div>
 
         <!-- Streamer 3: Matheus -->
         <div class="streamer-card">
-          <div class="streamer-header">
-            <div class="streamer-avatar">🔥</div>
-            <div class="streamer-info">
-              <h3 class="streamer-name">Matheeusz_</h3>
-              <p class="streamer-status">Leader da Guild • Sorcerer</p>
-            </div>
-          </div>
-          <div class="streamer-description">
-            <p>Assista o poder mágico do nosso líder Sorcerer! Dano massivo, combos devastadores e magias épicas!</p>
+          <div class="streamer-avatar">
+            <img src="../assets/Macanuudo.gif" alt="Matheeusz_" class="avatar-image">
           </div>
           <div class="streamer-actions">
             <a href="https://www.twitch.tv/matheeusz_" target="_blank" class="twitch-btn">
               <span class="twitch-icon">📺</span>
               Assistir na Twitch
-              <span class="external-link">🔗</span>
             </a>
           </div>
         </div>
@@ -116,7 +92,7 @@ export default {
 
 <style scoped>
 .streamers-container {
-  background: linear-gradient(to bottom, rgba(15, 15, 35, 0.9), rgba(26, 26, 46, 0.9));
+  background: #1a1a1a;
   min-height: 100vh;
   padding: 2rem 0;
   margin-top: 70px;
@@ -130,20 +106,15 @@ export default {
 
 .page-title {
   font-size: 3rem;
-  color: #ffffff;
+  color: #e5e5e5;
   margin-bottom: 1rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-  font-family: 'Times New Roman', serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 .page-subtitle {
   font-size: 1.2rem;
-  color: #c084fc;
+  color: #b3b3b3;
   margin-bottom: 3rem;
-  font-family: 'Georgia', serif;
-  font-style: italic;
 }
 
 /* Streamers Grid */
@@ -159,74 +130,40 @@ export default {
 
 /* Streamer Cards */
 .streamer-card {
-  background: linear-gradient(145deg, rgba(26, 26, 46, 0.4), rgba(45, 27, 105, 0.3));
-  border-radius: 20px;
+  background: #2a2a2a;
+  border-radius: 12px;
   padding: 2rem;
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid #444444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
 }
 
 .streamer-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-4px);
   border-color: #8b5cf6;
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
-}
-
-/* Streamer Header */
-.streamer-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .streamer-avatar {
-  font-size: 3rem;
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #8b5cf6, #c084fc);
-  border-radius: 15px;
-  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.streamer-info {
-  flex: 1;
-}
-
-.streamer-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 0.5rem 0;
-  font-family: 'Times New Roman', serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.streamer-status {
-  font-size: 0.9rem;
-  color: #c084fc;
-  margin: 0;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Streamer Description */
-.streamer-description {
-  margin-bottom: 2rem;
-}
-
-.streamer-description p {
-  color: #e5e7eb;
-  line-height: 1.6;
-  margin: 0;
-  font-size: 1rem;
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 /* Twitch Button */
@@ -238,23 +175,20 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(145deg, #9146ff, #6441a5);
+  background: #9146ff;
   color: white;
   text-decoration: none;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(145, 70, 255, 0.4);
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 
 .twitch-btn:hover {
-  background: linear-gradient(145deg, #a970ff, #7c4dff);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(145, 70, 255, 0.6);
+  background: #7c4dff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   text-decoration: none;
   color: white;
 }
@@ -269,22 +203,20 @@ export default {
 
 /* Info Section */
 .streamers-info {
-  background: rgba(26, 26, 46, 0.3);
-  border-radius: 20px;
+  background: #2a2a2a;
+  border-radius: 12px;
   padding: 2.5rem;
-  border: 2px solid rgba(139, 92, 246, 0.2);
-  backdrop-filter: blur(10px);
+  border: 1px solid #444444;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .info-title {
   font-size: 2rem;
-  color: #ffffff;
+  color: #e5e5e5;
   margin-bottom: 1.5rem;
   text-align: center;
-  font-family: 'Times New Roman', serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 600;
 }
 
 .info-content p {
@@ -340,7 +272,7 @@ export default {
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center center;
-  opacity: 1;
+  opacity: 0.05;
   pointer-events: none;
   z-index: -1;
 }
