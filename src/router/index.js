@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import BossList from '../components/BossList.vue'
 import Imbuements from '../components/Imbuements.vue'
+import Hunted from '../components/Hunted.vue'
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     path: '/imbuements',
     name: 'Imbuements',
     component: Imbuements
+  },
+  {
+    path: '/hunted',
+    name: 'Hunted',
+    component: Hunted
   }
 ]
 

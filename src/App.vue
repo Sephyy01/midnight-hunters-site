@@ -9,6 +9,7 @@
           <router-link to="/" class="nav-btn" :class="{ active: $route.name === 'Home' }">Home</router-link>
           <router-link to="/streamers" class="nav-btn" :class="{ active: $route.name === 'Streamers' }">Streamers</router-link>
           <router-link to="/boss-list" class="nav-btn" :class="{ active: $route.name === 'BossList' }">Boss List</router-link>
+          <router-link to="/hunted" class="nav-btn" :class="{ active: $route.name === 'Hunted' }">Hunted List</router-link>
           <router-link to="/imbuements" class="nav-btn" :class="{ active: $route.name === 'Imbuements' }">Imbuements</router-link>
         </div>
       </div>
