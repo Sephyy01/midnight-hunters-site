@@ -10,8 +10,8 @@
             <div class="best-choice-highlight">
                 <div class="best-choice-content">
                     <span class="best-choice-label">🏆 MELHOR OPÇÃO</span>
-                    <span class="best-choice-name">6 Gold Tokens</span>
-                    <span class="best-choice-price">246k</span>
+                    <span class="best-choice-name">4 Gold Tokens + Dead Brain</span>
+                    <span class="best-choice-price">239k</span>
                 </div>
             </div>
             
@@ -26,8 +26,8 @@
                         <img src="../assets/images/imbuimentos/life/vampire-teeth.gif">
                         Vampire Teeth</span>
                     <div class="price-info">
-                        <span class="unit-price">1.4k cada</span>
-                        <span class="total-price">= 35k total</span>
+                        <span class="unit-price">760 cada</span>
+                        <span class="total-price">= 19k total</span>
                     </div>
                 </div>
                 <div class="material-item">
@@ -36,8 +36,8 @@
                         <img src="../assets/images/imbuimentos/life/bloody-pincers.webp" alt="">
                         Bloody Pincers</span>
                     <div class="price-info">
-                        <span class="unit-price">10k cada</span>
-                        <span class="total-price">= 150k total</span>
+                        <span class="unit-price">11k cada</span>
+                        <span class="total-price">= 165k total</span>
                     </div>
                 </div>
                 <div class="material-item">
@@ -46,8 +46,8 @@
                         <img src="../assets/images/imbuimentos/life/piece-of-dead-brain.webp">
                         Piece of Dead Brain</span>
                     <div class="price-info">
-                        <span class="unit-price">19k cada</span>
-                        <span class="total-price">= 95k total</span>
+                        <span class="unit-price">15k cada</span>
+                        <span class="total-price">= 75k total</span>
                     </div>
                 </div>
             </div>
@@ -72,8 +72,20 @@
                     <div class="scenario-item best-option">
                         <div class="scenario-header">
                             <span class="scenario-rank">🏆 Melhor</span>
+                            <span class="scenario-name">4 Gold Tokens + Dead Brain</span>
+                            <span class="scenario-price">239k</span>
+                        </div>
+                        <div class="scenario-details">
+                            4 Gold Tokens (25 Vampire + 15 Bloody) + 5 Dead Brain (75k)
+                        </div>
+                    </div>
+
+                    <div class="scenario-item">
+                        <div class="scenario-header">
+                            <span class="scenario-rank">2°</span>
                             <span class="scenario-name">6 Gold Tokens</span>
                             <span class="scenario-price">246k</span>
+                            <span class="price-difference">+7k</span>
                         </div>
                         <div class="scenario-details">
                             6 Gold Tokens (cobre todos os materiais)
@@ -82,25 +94,13 @@
 
                     <div class="scenario-item">
                         <div class="scenario-header">
-                            <span class="scenario-rank">2°</span>
-                            <span class="scenario-name">4 Gold Tokens + Dead Brain</span>
-                            <span class="scenario-price">259k</span>
-                            <span class="price-difference">+13k</span>
-                        </div>
-                        <div class="scenario-details">
-                            4 Gold Tokens (25 Vampire + 15 Bloody) + 5 Dead Brain (95k)
-                        </div>
-                    </div>
-
-                    <div class="scenario-item">
-                        <div class="scenario-header">
                             <span class="scenario-rank">3°</span>
                             <span class="scenario-name">Tudo no Market</span>
-                            <span class="scenario-price">280k</span>
-                            <span class="price-difference">+34k</span>
+                            <span class="scenario-price">259k</span>
+                            <span class="price-difference">+20k</span>
                         </div>
                         <div class="scenario-details">
-                            25 Vampire (35k) + 15 Bloody (150k) + 5 Dead Brain (95k)
+                            25 Vampire (19k) + 15 Bloody (165k) + 5 Dead Brain (75k)
                         </div>
                     </div>
 
@@ -108,11 +108,11 @@
                         <div class="scenario-header">
                             <span class="scenario-rank">4°</span>
                             <span class="scenario-name">2 Gold Tokens + resto</span>
-                            <span class="scenario-price">327k</span>
-                            <span class="price-difference">+81k</span>
+                            <span class="scenario-price">322k</span>
+                            <span class="price-difference">+83k</span>
                         </div>
                         <div class="scenario-details">
-                            2 Gold Tokens (25 Vampire) + 15 Bloody (150k) + 5 Dead Brain (95k)
+                            2 Gold Tokens (25 Vampire) + 15 Bloody (165k) + 5 Dead Brain (75k)
                         </div>
                     </div>
                 </div>
@@ -124,8 +124,8 @@
             <div class="best-choice-highlight">
                 <div class="best-choice-content">
                     <span class="best-choice-label">🏆 MELHOR OPÇÃO</span>
-                    <span class="best-choice-name">2 Gold Tokens + resto</span>
-                    <span class="best-choice-price">138k</span>
+                    <span class="best-choice-name">Tudo no Market</span>
+                    <span class="best-choice-price">146k</span>
                 </div>
             </div>
             
@@ -140,28 +140,28 @@
                         <img src="../assets/images/imbuimentos/mana/rope-belt.webp" alt="">
                         Rope Belt</span>
                     <div class="price-info">
-                        <span class="unit-price">4k cada</span>
-                        <span class="total-price">= 100k total</span>
+                        <span class="unit-price">3.2k cada</span>
+                        <span class="total-price">= 80k total</span>
                     </div>
                 </div>
                 <div class="material-item">
                     <span class="quantity">25x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimentos/mana/silencer-claws.gif">
+                        <img src="../assets/images/imbuimientos/mana/silencer-claws.gif">
                         Silencer Claws</span>
                     <div class="price-info">
-                        <span class="unit-price">1.8k cada</span>
-                        <span class="total-price">= 45k total</span>
+                        <span class="unit-price">2.4k cada</span>
+                        <span class="total-price">= 60k total</span>
                     </div>
                 </div>
                 <div class="material-item">
                     <span class="quantity">5x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimentos/mana/some-grimeleech-wings.webp" alt="">
+                        <img src="../assets/images/imbuimientos/mana/some-grimeleech-wings.webp" alt="">
                         Some Grimeleech Wings</span>
                     <div class="price-info">
-                        <span class="unit-price">2.2k cada</span>
-                        <span class="total-price">= 11k total</span>
+                        <span class="unit-price">1.2k cada</span>
+                        <span class="total-price">= 6k total</span>
                     </div>
                 </div>
             </div>
@@ -186,23 +186,23 @@
                     <div class="scenario-item best-option">
                         <div class="scenario-header">
                             <span class="scenario-rank">🏆 Melhor</span>
-                            <span class="scenario-name">2 Gold Tokens + resto</span>
-                            <span class="scenario-price">138k</span>
+                            <span class="scenario-name">Tudo no Market</span>
+                            <span class="scenario-price">146k</span>
                         </div>
                         <div class="scenario-details">
-                            2 Gold Tokens (25 Rope) + 25 Silencer (45k) + 5 Grimeleech (11k)
+                            25 Rope Belt (80k) + 25 Silencer (60k) + 5 Grimeleech (6k)
                         </div>
                     </div>
 
                     <div class="scenario-item">
                         <div class="scenario-header">
                             <span class="scenario-rank">2°</span>
-                            <span class="scenario-name">Tudo no Market</span>
-                            <span class="scenario-price">156k</span>
-                            <span class="price-difference">+18k</span>
+                            <span class="scenario-name">2 Gold Tokens + resto</span>
+                            <span class="scenario-price">148k</span>
+                            <span class="price-difference">+2k</span>
                         </div>
                         <div class="scenario-details">
-                            25 Rope Belt (100k) + 25 Silencer (45k) + 5 Grimeleech (11k)
+                            2 Gold Tokens (25 Rope) + 25 Silencer (60k) + 5 Grimeleech (6k)
                         </div>
                     </div>
 
@@ -210,11 +210,11 @@
                         <div class="scenario-header">
                             <span class="scenario-rank">3°</span>
                             <span class="scenario-name">4 Gold Tokens + Grimeleech</span>
-                            <span class="scenario-price">175k</span>
-                            <span class="price-difference">+37k</span>
+                            <span class="scenario-price">170k</span>
+                            <span class="price-difference">+24k</span>
                         </div>
                         <div class="scenario-details">
-                            4 Gold Tokens (25 Rope + 25 Silencer) + 5 Grimeleech (11k)
+                            4 Gold Tokens (25 Rope + 25 Silencer) + 5 Grimeleech (6k)
                         </div>
                     </div>
 
@@ -223,7 +223,7 @@
                             <span class="scenario-rank">4°</span>
                             <span class="scenario-name">6 Gold Tokens</span>
                             <span class="scenario-price">246k</span>
-                            <span class="price-difference">+108k</span>
+                            <span class="price-difference">+100k</span>
                         </div>
                         <div class="scenario-details">
                             6 Gold Tokens (cobre todos os materiais)
@@ -239,7 +239,7 @@
                 <div class="best-choice-content">
                     <span class="best-choice-label">🏆 MELHOR OPÇÃO</span>
                     <span class="best-choice-name">4 Gold Tokens + Vexclaw</span>
-                    <span class="best-choice-price">171k</span>
+                    <span class="best-choice-price">170k</span>
                 </div>
             </div>
             
@@ -251,21 +251,21 @@
                 <div class="material-item">
                     <span class="quantity">20x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimentos/critico/protective-charm.webp" alt="">
+                        <img src="../assets/images/imbuimientos/critico/protective-charm.webp" alt="">
                         Protective Charm</span>
                     <div class="price-info">
-                        <span class="unit-price">2.1k cada</span>
-                        <span class="total-price">= 42k total</span>
+                        <span class="unit-price">2.8k cada</span>
+                        <span class="total-price">= 56k total</span>
                     </div>
                 </div>
                 <div class="material-item">
                     <span class="quantity">25x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimentos/critico/sabretooth.webp" alt="">
+                        <img src="../assets/images/imbuimientos/critico/sabretooth.webp" alt="">
                         Sabretooth</span>
                     <div class="price-info">
-                        <span class="unit-price">6.6k cada</span>
-                        <span class="total-price">= 165k total</span>
+                        <span class="unit-price">5k cada</span>
+                        <span class="total-price">= 125k total</span>
                     </div>
                 </div>
                 <div class="material-item">
@@ -301,10 +301,10 @@
                         <div class="scenario-header">
                             <span class="scenario-rank">🏆 Melhor</span>
                             <span class="scenario-name">4 Gold Tokens + Vexclaw</span>
-                            <span class="scenario-price">171k</span>
+                            <span class="scenario-price">170k</span>
                         </div>
                         <div class="scenario-details">
-                            4 Gold Tokens (20 Protective + 25 Sabretooth) + 5 Vexclaw (7k)
+                            4 Gold Tokens (20 Protective + 25 Sabretooth) + 5 Vexclaw (6.5k)
                         </div>
                     </div>
 
@@ -312,35 +312,35 @@
                         <div class="scenario-header">
                             <span class="scenario-rank">2°</span>
                             <span class="scenario-name">Tudo no Market</span>
-                            <span class="scenario-price">214k</span>
-                            <span class="price-difference">+43k</span>
+                            <span class="scenario-price">187k</span>
+                            <span class="price-difference">+17k</span>
                         </div>
                         <div class="scenario-details">
-                            20 Protective (42k) + 25 Sabretooth (165k) + 5 Vexclaw (7k)
+                            20 Protective (56k) + 25 Sabretooth (125k) + 5 Vexclaw (6.5k)
                         </div>
                     </div>
 
                     <div class="scenario-item">
                         <div class="scenario-header">
                             <span class="scenario-rank">3°</span>
-                            <span class="scenario-name">6 Gold Tokens</span>
-                            <span class="scenario-price">246k</span>
-                            <span class="price-difference">+75k</span>
+                            <span class="scenario-name">2 Gold Tokens + resto</span>
+                            <span class="scenario-price">213k</span>
+                            <span class="price-difference">+43k</span>
                         </div>
                         <div class="scenario-details">
-                            6 Gold Tokens (cobre todos os materiais)
+                            2 Gold Tokens (20 Protective) + 25 Sabretooth (125k) + 5 Vexclaw (6.5k)
                         </div>
                     </div>
 
                     <div class="scenario-item">
                         <div class="scenario-header">
                             <span class="scenario-rank">4°</span>
-                            <span class="scenario-name">2 Gold Tokens + resto</span>
-                            <span class="scenario-price">254k</span>
-                            <span class="price-difference">+83k</span>
+                            <span class="scenario-name">6 Gold Tokens</span>
+                            <span class="scenario-price">246k</span>
+                            <span class="price-difference">+76k</span>
                         </div>
                         <div class="scenario-details">
-                            2 Gold Tokens (20 Protective) + 25 Sabretooth (165k) + 5 Vexclaw (7k)
+                            6 Gold Tokens (cobre todos os materiais)
                         </div>
                     </div>
                 </div>
