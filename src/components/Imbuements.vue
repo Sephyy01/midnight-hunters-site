@@ -51,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Opção Alternativa -->
             <div class="alternative-option">
                 <span class="or-text">OU</span>
                 <div class="gold-token-option">
