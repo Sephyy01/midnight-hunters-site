@@ -148,7 +148,7 @@
                 <div class="material-item">
                     <span class="quantity">25x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimientos/mana/silencer-claws.gif">
+                        <img src="../assets/images/imbuimentos/mana/silencer-claws.gif">
                         Silencer Claws</span>
                     <div class="price-info">
                         <span class="unit-price">2.4k cada</span>
@@ -158,7 +158,7 @@
                 <div class="material-item">
                     <span class="quantity">5x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimientos/mana/some-grimeleech-wings.webp" alt="">
+                        <img src="../assets/images/imbuimentos/mana/some-grimeleech-wings.webp" alt="">
                         Some Grimeleech Wings</span>
                     <div class="price-info">
                         <span class="unit-price">1.2k cada</span>
@@ -252,7 +252,7 @@
                 <div class="material-item">
                     <span class="quantity">20x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimientos/critico/protective-charm.webp" alt="">
+                        <img src="../assets/images/imbuimentos/critico/protective-charm.webp" alt="">
                         Protective Charm</span>
                     <div class="price-info">
                         <span class="unit-price">2.8k cada</span>
@@ -262,7 +262,7 @@
                 <div class="material-item">
                     <span class="quantity">25x</span>
                     <span class="item-name">
-                        <img src="../assets/images/imbuimientos/critico/sabretooth.webp" alt="">
+                        <img src="../assets/images/imbuimentos/critico/sabretooth.webp" alt="">
                         Sabretooth</span>
                     <div class="price-info">
                         <span class="unit-price">5k cada</span>
