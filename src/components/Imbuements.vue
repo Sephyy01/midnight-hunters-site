@@ -353,8 +353,15 @@
 </template>
 
 <script>
+import guildLogo from '../assets/images/logos/guild-logo.png'
+
 export default {
-    name: 'Imbuements'
+    name: 'Imbuements',
+    data() {
+        return {
+            guildLogo
+        }
+    }
 }
 </script>
 
@@ -718,16 +725,3 @@ export default {
     }
 }
 </style>
-
-<script>
-import guildLogo from '../assets/images/logos/guild-logo.png'
-
-export default {
-  name: 'Imbuements',
-  data() {
-    return {
-      guildLogo
-    }
-  }
-}
-</script>
