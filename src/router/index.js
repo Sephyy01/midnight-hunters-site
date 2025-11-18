@@ -32,7 +32,7 @@ const routes = [
     component: Hunted
   },
   {
-    path: '/ts3',
+    path: '/descricao',
     name: 'TS3Description',
     component: TS3Description
   }
