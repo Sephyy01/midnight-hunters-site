@@ -1,7 +1,7 @@
 <template>
     <div class="imbuements-container">
         <div class="container">
-            <h1 class="page-title">⚔️ Imbuements</h1>
+            <h1 class="page-title"><img :src="guildLogo" alt="Guild Logo" class="title-icon" /> Imbuements</h1>
             <p class="page-subtitle">Receitas e materiais necessários para imbuements</p>
 
             <div class="imbuements-grid">
@@ -377,6 +377,16 @@ export default {
     text-align: center;
     margin-bottom: 1rem;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.title-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
 
 .page-subtitle {
@@ -708,3 +718,16 @@ export default {
     }
 }
 </style>
+
+<script>
+import guildLogo from '../assets/images/logos/guild-logo.png'
+
+export default {
+  name: 'Imbuements',
+  data() {
+    return {
+      guildLogo
+    }
+  }
+}
+</script>

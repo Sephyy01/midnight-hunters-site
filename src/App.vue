@@ -3,7 +3,8 @@
     <nav class="fixed-header">
       <div class="nav-container">
         <div class="guild-name">
-          ⚔️ Midnight Hunters
+          <img :src="guildLogo" alt="Guild Logo" class="guild-logo-img" />
+          Midnight Hunters
         </div>
         <div class="nav-buttons">
           <router-link to="/" class="nav-btn" :class="{ active: $route.name === 'Home' }">Home</router-link>
@@ -21,8 +22,15 @@
 </template>
 
 <script>
+import guildLogo from './assets/images/logos/guild-logo.png'
+
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      guildLogo
+    }
+  }
 }
 </script>
 
@@ -57,6 +65,15 @@ export default {
   font-family: 'Times New Roman', serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.guild-logo-img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-buttons {

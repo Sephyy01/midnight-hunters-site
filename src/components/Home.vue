@@ -5,7 +5,7 @@
       <div class="hero-container">
         <!-- Guild Info Column -->
         <div class="hero-content">
-          <div class="guild-emblem-large">⚔️</div>
+          <div class="guild-emblem-large"><img :src="guildLogo" alt="Guild Logo" /></div>
           <h1 class="hero-title">Midnight Hunters</h1>
           <p class="hero-subtitle">"Unidos na caçada, fortes na amizade"</p>
           <p class="hero-description">
@@ -30,7 +30,7 @@
           </div>
           <div class="hero-actions">
             <button class="cta-primary">
-              <span class="button-icon">⚔️</span>
+              <span class="button-icon"><img :src="guildLogo" alt="Guild Logo" class="button-icon-img" /></span>
               Junte-se à Guilda
             </button>
             <button class="cta-secondary">
@@ -357,7 +357,7 @@
           </p>
           <div class="cta-buttons">
             <button class="cta-primary-large">
-              <span class="button-icon">⚔️</span>
+              <span class="button-icon"><img :src="guildLogo" alt="Guild Logo" class="button-icon-img" /></span>
               Aplicar Agora
               <span class="button-arrow">→</span>
             </button>
@@ -376,11 +376,13 @@ import HunterMaleGif from '../assets/HunterMale.gif'
 import KnightMaleGif from '../assets/KnightMale.gif'
 import DruidMaleGif from '../assets/DruidMale.gif'
 import MasterMaleGif from '../assets/MasterMale.gif'
+import guildLogo from '../assets/images/logos/guild-logo.png'
 
 export default {
   name: 'Home',
   data() {
     return {
+      guildLogo,
       characterName: '',
       characterData: null,
       loading: false,
@@ -601,6 +603,18 @@ export default {
   font-size: 4rem;
   margin-bottom: 1.5rem;
   opacity: 0.9;
+}
+
+.guild-emblem-large img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+.button-icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .hero-title {

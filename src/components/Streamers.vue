@@ -58,7 +58,7 @@
               <span class="feature-text">Liderança da Guild</span>
             </div>
             <div class="feature-item">
-              <span class="feature-icon">⚔️</span>
+              <span class="feature-icon"><img :src="guildLogo" alt="Guild Logo" class="feature-icon-img" /></span>
               <span class="feature-text">Boss Hunts Épicos</span>
             </div>
             <div class="feature-item">
@@ -85,8 +85,15 @@
 </template>
 
 <script>
+import guildLogo from '../assets/images/logos/guild-logo.png'
+
 export default {
-  name: 'Streamers'
+  name: 'Streamers',
+  data() {
+    return {
+      guildLogo
+    }
+  }
 }
 </script>
 
@@ -252,6 +259,12 @@ export default {
 .feature-icon {
   font-size: 1.5rem;
   filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5));
+}
+
+.feature-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .feature-text {

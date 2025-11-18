@@ -3,7 +3,7 @@
     <!-- Header Section -->
     <section class="hunted-header">
       <div class="container">
-        <h1 class="page-title">⚔️ Hunted List</h1>
+        <h1 class="page-title"><img :src="guildLogo" alt="Guild Logo" class="title-icon" /> Hunted List</h1>
         <p class="page-subtitle">Lista personalizada de inimigos monitorados</p>
       </div>
     </section>
@@ -122,11 +122,13 @@ import HunterMaleGif from '../assets/HunterMale.gif'
 import KnightMaleGif from '../assets/KnightMale.gif'
 import DruidMaleGif from '../assets/DruidMale.gif'
 import MasterMaleGif from '../assets/MasterMale.gif'
+import guildLogo from '../assets/images/logos/guild-logo.png'
 
 export default {
   name: 'Hunted',
   data() {
     return {
+      guildLogo,
       enemies: [],
       newEnemyName: '',
       isLoading: false,
@@ -352,6 +354,16 @@ export default {
   margin-bottom: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .page-subtitle {

@@ -1,7 +1,7 @@
 <template>
   <div class="boss-list-container">
     <div class="container">
-      <h1 class="page-title">⚔️ Times Final Ferumbras e GT</h1>
+      <h1 class="page-title"><img :src="guildLogo" alt="Guild Logo" class="title-icon" /> Times Final Ferumbras e GT</h1>
       <p class="page-subtitle">Cadastros e informações dos times da guild</p>
       
       <div class="actions-section">
@@ -51,7 +51,7 @@
       </div>
 
       <div v-if="loading" class="loading-state">
-        <div class="loading-spinner">⚔️</div>
+        <div class="loading-spinner"><img :src="guildLogo" alt="Guild Logo" class="spinner-icon" /></div>
         <p>Carregando dados da planilha...</p>
       </div>
 
@@ -122,10 +122,13 @@
 </template>
 
 <script>
+import guildLogo from '../assets/images/logos/guild-logo.png'
+
 export default {
   name: 'BossList',
   data() {
     return {
+      guildLogo,
       data: [],
       headers: [],
       loading: false,
@@ -457,6 +460,12 @@ export default {
   font-size: 3rem;
   animation: spin 2s linear infinite;
   margin-bottom: 1rem;
+}
+
+.spinner-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 @keyframes spin {
