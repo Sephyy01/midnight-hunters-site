@@ -11,6 +11,7 @@
           <router-link to="/boss-list" class="nav-btn" :class="{ active: $route.name === 'BossList' }">Boss List</router-link>
           <router-link to="/hunted" class="nav-btn" :class="{ active: $route.name === 'Hunted' }">Hunted List</router-link>
           <router-link to="/imbuements" class="nav-btn" :class="{ active: $route.name === 'Imbuements' }">Imbuements</router-link>
+          <router-link to="/ts3" class="nav-btn" :class="{ active: $route.name === 'TS3Description' }">Descrição para TS3</router-link>
         </div>
       </div>
     </nav>

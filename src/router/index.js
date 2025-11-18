@@ -3,6 +3,7 @@ import Home from '../components/Home.vue'
 import BossList from '../components/BossList.vue'
 import Imbuements from '../components/Imbuements.vue'
 import Hunted from '../components/Hunted.vue'
+import TS3Description from '../components/TS3Description.vue'
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: '/hunted',
     name: 'Hunted',
     component: Hunted
+  },
+  {
+    path: '/ts3',
+    name: 'TS3Description',
+    component: TS3Description
   }
 ]
 
