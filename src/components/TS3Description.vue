@@ -113,13 +113,14 @@ export default {
         generateDescription() {
             const { nomeRL, main, maker, indicadoPor, registradoPor } = this.formData;
             
-            if (!nomeRL || !main || !maker || !indicadoPor || !registradoPor) {
-                alert('Por favor, preencha todos os campos!');
+            if (!nomeRL || !main || !indicadoPor || !registradoPor) {
+                alert('Por favor, preencha todos os campos obrigatórios!');
                 return;
             }
             
-            this.generatedDescription = `<strong>${nomeRL} - Main: ${main} | Maker: ${maker} | Indicado: ${indicadoPor} | Reg: ${registradoPor}</strong>`;
-            this.bbCodeDescription = `[b]${nomeRL} - Main: ${main} | Maker: ${maker} | Indicado: ${indicadoPor} | Reg: ${registradoPor}[/b]`;
+            const makerText = maker ? ` | Maker: ${maker}` : '';
+            this.generatedDescription = `<strong>${nomeRL} - Main: ${main}${makerText} | Indicado: ${indicadoPor} | Reg: ${registradoPor}</strong>`;
+            this.bbCodeDescription = `[b]${nomeRL} - Main: ${main}${makerText} | Indicado: ${indicadoPor} | Reg: ${registradoPor}[/b]`;
         },
         async copyDescription() {
             try {
